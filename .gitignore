@@ -1,0 +1,5 @@
+﻿.vs
+DotNet.WpfToolKit/bin
+DotNet.WpfToolKit/obj
+DotNet.WpfToolKit.Tests/bin
+DotNet.WpfToolKit.Tests/obj
