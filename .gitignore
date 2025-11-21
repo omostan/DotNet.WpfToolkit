@@ -1,5 +1,41 @@
 ﻿.vs
-DotNet.WpfToolKit/bin
-DotNet.WpfToolKit/obj
-DotNet.WpfToolKit.Tests/bin
-DotNet.WpfToolKit.Tests/obj
+*.user
+*.suo
+*.userosscache
+
+# Build results
+bin/
+obj/
+out/
+[Dd]ebug/
+[Rr]elease/
+
+# NuGet Packages - DO NOT commit
+*.nupkg
+*.snupkg
+nupkg/
+packages/
+*.nuget.props
+*.nuget.targets
+
+# Test Results
+TestResults/
+*.trx
+*.coverage
+
+# Rider / VSCode
+.idea/
+.vscode/
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# Mac
+.DS_Store
+
+# Temporary files
+*.tmp
+*.log
+*.bak
+*~
