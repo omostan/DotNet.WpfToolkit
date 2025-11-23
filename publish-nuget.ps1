@@ -1,4 +1,4 @@
-# NuGet Package Publishing Script for DotNet.WpfToolkit
+# NuGet Package Publishing Script for DotNetTools.Wpfkit
 # Usage: .\publish-nuget.ps1 [-ApiKey "your-api-key"]
 
 param(
@@ -11,7 +11,7 @@ $Yellow = "Yellow"
 $Red = "Red"
 
 Write-Host "========================================" -ForegroundColor $Green
-Write-Host "  DotNet.WpfToolkit NuGet Publisher" -ForegroundColor $Green
+Write-Host "  DotNetTools.Wpfkit NuGet Publisher" -ForegroundColor $Green
 Write-Host "========================================" -ForegroundColor $Green
 Write-Host ""
 
@@ -28,7 +28,7 @@ if ([string]::IsNullOrEmpty($ApiKey)) {
 
 # Navigate to project directory
 Write-Host "Navigating to project directory..." -ForegroundColor $Yellow
-Set-Location DotNet.WpfToolkit
+Set-Location DotNetTools.WpfKit
 
 # Clean previous builds
 Write-Host "Cleaning previous builds..." -ForegroundColor $Yellow
@@ -53,10 +53,10 @@ if ($LASTEXITCODE -ne 0) {
 }
 
 # Get package version from csproj
-[xml]$csproj = Get-Content DotNet.WpfToolkit.csproj
+[xml]$csproj = Get-Content DotNetTools.Wpfkit.csproj
 $Version = $csproj.Project.PropertyGroup.Version
-$PackageFile = "nupkg/DotNet.WpfToolKit.$Version.nupkg"
-$SymbolsFile = "nupkg/DotNet.WpfToolKit.$Version.snupkg"
+$PackageFile = "nupkg/DotNetTools.Wpfkit.$Version.nupkg"
+$SymbolsFile = "nupkg/DotNetTools.Wpfkit.$Version.snupkg"
 
 Write-Host "Package created: $PackageFile" -ForegroundColor $Green
 
@@ -68,7 +68,7 @@ if (-not (Test-Path $PackageFile)) {
 
 # Ask for confirmation
 Write-Host ""
-Write-Host "Ready to publish DotNet.WpfToolKit v$Version to NuGet.org" -ForegroundColor $Yellow
+Write-Host "Ready to publish DotNetTools.Wpfkit v$Version to NuGet.org" -ForegroundColor $Yellow
 $Confirm = Read-Host "Continue? (y/n)"
 
 if ($Confirm -ne "y" -and $Confirm -ne "Y") {
@@ -99,11 +99,11 @@ if (Test-Path $SymbolsFile) {
 
 Write-Host ""
 Write-Host "========================================" -ForegroundColor $Green
-Write-Host "  ? Successfully published!" -ForegroundColor $Green
+Write-Host "  ✅ Successfully published!" -ForegroundColor $Green
 Write-Host "========================================" -ForegroundColor $Green
 Write-Host ""
-Write-Host "Package: DotNet.WpfToolKit v$Version"
-Write-Host "URL: https://www.nuget.org/packages/DotNet.WpfToolKit/$Version"
+Write-Host "Package: DotNetTools.Wpfkit v$Version"
+Write-Host "URL: https://www.nuget.org/packages/DotNetTools.Wpfkit/$Version"
 Write-Host ""
 Write-Host "Note: It may take 5-10 minutes for the package to appear in search." -ForegroundColor $Yellow
 Write-Host ""

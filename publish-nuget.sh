@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# NuGet Package Publishing Script for DotNet.WpfToolkit
+# NuGet Package Publishing Script for DotNetTools.Wpfkit
 # Usage: ./publish-nuget.sh [api-key]
 
 set -e  # Exit on error
@@ -12,7 +12,7 @@ RED='\033[0;31m'
 NC='\033[0m' # No Color
 
 echo -e "${GREEN}========================================${NC}"
-echo -e "${GREEN}  DotNet.WpfToolkit NuGet Publisher${NC}"
+echo -e "${GREEN}  DotNetTools.Wpfkit NuGet Publisher${NC}"
 echo -e "${GREEN}========================================${NC}"
 echo ""
 
@@ -34,7 +34,7 @@ fi
 
 # Navigate to project directory
 echo -e "${YELLOW}Navigating to project directory...${NC}"
-cd DotNet.WpfToolkit
+cd DotNetTools.WpfKit
 
 # Clean previous builds
 echo -e "${YELLOW}Cleaning previous builds...${NC}"
@@ -49,9 +49,9 @@ echo -e "${YELLOW}Creating NuGet package...${NC}"
 dotnet pack --configuration Release --output ./nupkg
 
 # Get package version from csproj
-VERSION=$(grep -oP '<Version>\K[^<]+' DotNet.WpfToolkit.csproj)
-PACKAGE_FILE="nupkg/DotNet.WpfToolKit.${VERSION}.nupkg"
-SYMBOLS_FILE="nupkg/DotNet.WpfToolKit.${VERSION}.snupkg"
+VERSION=$(grep -oP '<Version>\K[^<]+' DotNetTools.Wpfkit.csproj)
+PACKAGE_FILE="nupkg/DotNetTools.Wpfkit.${VERSION}.nupkg"
+SYMBOLS_FILE="nupkg/DotNetTools.Wpfkit.${VERSION}.snupkg"
 
 echo -e "${GREEN}Package created: ${PACKAGE_FILE}${NC}"
 
@@ -63,7 +63,7 @@ fi
 
 # Ask for confirmation
 echo ""
-echo -e "${YELLOW}Ready to publish DotNet.WpfToolKit v${VERSION} to NuGet.org${NC}"
+echo -e "${YELLOW}Ready to publish DotNetTools.Wpfkit v${VERSION} to NuGet.org${NC}"
 echo -n "Continue? (y/n): "
 read -r CONFIRM
 
@@ -90,11 +90,11 @@ fi
 
 echo ""
 echo -e "${GREEN}========================================${NC}"
-echo -e "${GREEN}  ? Successfully published!${NC}"
+echo -e "${GREEN}  ✅ Successfully published!${NC}"
 echo -e "${GREEN}========================================${NC}"
 echo ""
-echo "Package: DotNet.WpfToolKit v${VERSION}"
-echo "URL: https://www.nuget.org/packages/DotNet.WpfToolKit/${VERSION}"
+echo "Package: DotNetTools.Wpfkit v${VERSION}"
+echo "URL: https://www.nuget.org/packages/DotNetTools.Wpfkit/${VERSION}"
 echo ""
 echo -e "${YELLOW}Note: It may take 5-10 minutes for the package to appear in search.${NC}"
 echo ""
