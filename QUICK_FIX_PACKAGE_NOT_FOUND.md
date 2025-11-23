@@ -1,4 +1,4 @@
-# ?? Fix: Package Not Found After Publishing
+# 🔍 Fix: Package Not Found After Publishing
 
 ## Error Message
 ```
@@ -7,7 +7,7 @@ error: There are no versions available for the package 'DotNet.WpfToolKit'.
 
 ## Common Causes & Solutions
 
-### 1. ?? Package Still Being Indexed (Most Common)
+### 1. ⏰ Package Still Being Indexed (Most Common)
 
 **Wait Time**: 15-60 minutes after publishing
 
@@ -23,7 +23,7 @@ dotnet nuget locals all --clear
 dotnet add package DotNet.WpfToolKit
 ```
 
-### 2. ?? Case Sensitivity Issue
+### 2. 🔤 Case Sensitivity Issue
 
 NuGet package names are **case-sensitive**!
 
@@ -40,7 +40,7 @@ dotnet add package DotNet.WpfToolkit    # Lowercase 'k'
 dotnet add package dotnet.wpftoolkit    # All lowercase
 ```
 
-### 3. ??? Clear NuGet Cache
+### 3. 🧹 Clear NuGet Cache
 
 Your local cache might be outdated:
 
@@ -55,7 +55,7 @@ dotnet nuget locals http-cache --clear
 dotnet add package DotNet.WpfToolKit
 ```
 
-### 4. ? Verify Package Source
+### 4. 🔌 Verify Package Source
 
 Ensure you're using the correct NuGet source:
 
@@ -75,7 +75,7 @@ dotnet nuget enable source nuget.org
 dotnet nuget add source https://api.nuget.org/v3/index.json -n nuget.org
 ```
 
-### 5. ?? Search for Your Package
+### 5. 🔍 Search for Your Package
 
 Test if NuGet can find your package:
 
@@ -87,17 +87,17 @@ dotnet package search DotNet.WpfToolKit --exact-match
 dotnet package search WpfToolKit
 ```
 
-### 6. ?? Check Package Status on NuGet.org
+### 6. 📦 Check Package Status on NuGet.org
 
 **Direct URL:** https://www.nuget.org/packages/DotNet.WpfToolKit
 
 Look for:
-- ? Package shows "Listed" status
-- ? Version 1.0.0 appears
-- ? No validation errors
-- ? If showing "Unlisted", it won't appear in searches
+- ✅ Package shows "Listed" status
+- ✅ Version 1.0.0 appears
+- ✅ No validation errors
+- ✅ If showing "Unlisted", it won't appear in searches
 
-### 7. ?? Try Different Installation Methods
+### 7. 💡 Try Different Installation Methods
 
 #### Method 1: Specify Version Explicitly
 ```sh
@@ -131,7 +131,7 @@ curl -o nuget.exe https://dist.nuget.org/win-x86-commandline/latest/nuget.exe
 nuget.exe install DotNet.WpfToolKit -Version 1.0.0
 ```
 
-### 8. ?? Verify Package ID on NuGet.org
+### 8. 🔎 Verify Package ID on NuGet.org
 
 The actual package ID might be different from what you think:
 

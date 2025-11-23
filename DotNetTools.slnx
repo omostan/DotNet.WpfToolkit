@@ -1,11 +1,28 @@
 <Solution>
   <Folder Name="/Solution Items/">
     <File Path=".editorconfig" />
+    <File Path="ADDING_PACKAGE_ICON.md" />
+    <File Path="APP_MODERNIZATION_REFERENCE.md" />
+    <File Path="CONTRIBUTING.md" />
     <File Path="DotNetTools.slnx.licenseheader" />
     <File Path="DotNetTools.WpfKit.Tests/README.md" />
     <File Path="DotNetTools.WpfKit/ICON_GUIDE.md" />
+    <File Path="MODERNIZATION_SUMMARY.md" />
+    <File Path="NUGET_API_KEY_TROUBLESHOOTING.md" />
+    <File Path="NUGET_PUBLISHING_CHECKLIST.md" />
+    <File Path="NUGET_PUBLISHING_GUIDE.md" />
+    <File Path="NUGET_PUBLISHING_SUMMARY.md" />
+    <File Path="POST_PUBLICATION_CHECKLIST.md" />
+    <File Path="PROJECT_COMPLETION.md" />
+    <File Path="PROJECT_COMPLETION_SUMMARY.md" />
+    <File Path="QUICK_FIX_403_ERROR.md" />
+    <File Path="QUICK_FIX_404_SYMBOLS_ERROR.md" />
+    <File Path="QUICK_FIX_PACKAGE_NOT_FOUND.md" />
+    <File Path="QUICK_NUGET_PUBLISH.md" />
+    <File Path="QUICK_START.md" />
     <File Path="README.md" />
     <File Path="release-notes.md" />
+    <File Path="UNIT_TESTS_SUMMARY.md" />
   </Folder>
   <Project Path="DotNetTools.WpfKit.Tests/DotNetTools.Wpfkit.Tests.csproj" />
   <Project Path="DotNetTools.WpfKit/DotNetTools.Wpfkit.csproj" />

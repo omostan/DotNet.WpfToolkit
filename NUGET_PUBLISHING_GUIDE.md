@@ -230,11 +230,11 @@ dotnet nuget push nupkg/DotNet.WpfToolKit.1.0.1.nupkg --api-key YOUR_API_KEY_HER
 See **`NUGET_API_KEY_TROUBLESHOOTING.md`** for comprehensive troubleshooting steps.
 
 **Common causes**:
-- ? Key expired
-- ? Key doesn't have push permission
-- ? Key restricted to specific package pattern that doesn't match
-- ? Key copied incorrectly (extra spaces)
-- ? Wrong key used (copied from different account)
+- ❌ Key expired
+- ❌ Key doesn't have push permission
+- ❌ Key restricted to specific package pattern that doesn't match
+- ❌ Key copied incorrectly (extra spaces)
+- ❌ Wrong key used (copied from different account)
 
 **Quick test**:
 ```bash
@@ -370,4 +370,4 @@ jobs:
 
 ---
 
-**Ready to publish?** Follow the steps above and your package will be live on NuGet! ??
+**Ready to publish?** Follow the steps above and your package will be live on NuGet! 🚀

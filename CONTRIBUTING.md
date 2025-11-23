@@ -2,7 +2,7 @@
 
 Thank you for your interest in contributing to DotNet.WpfToolKit! This document provides guidelines and instructions for contributing.
 
-## ?? Table of Contents
+## 📑 Table of Contents
 
 - [Code of Conduct](#code-of-conduct)
 - [Getting Started](#getting-started)
@@ -11,7 +11,7 @@ Thank you for your interest in contributing to DotNet.WpfToolKit! This document 
 - [Submitting Changes](#submitting-changes)
 - [Reporting Issues](#reporting-issues)
 
-## ?? Code of Conduct
+## 🤝 Code of Conduct
 
 ### Our Pledge
 We are committed to providing a welcoming and inspiring community for everyone. Please be respectful and constructive in all interactions.
@@ -23,7 +23,7 @@ We are committed to providing a welcoming and inspiring community for everyone. 
 - Focus on what is best for the community
 - Show empathy towards other community members
 
-## ?? Getting Started
+## 🚀 Getting Started
 
 ### Prerequisites
 - **Visual Studio 2022** (version 17.12 or later)
@@ -60,7 +60,7 @@ We are committed to providing a welcoming and inspiring community for everyone. 
    dotnet test
    ```
 
-## ?? Development Process
+## 🔄 Development Process
 
 ### Branching Strategy
 
@@ -83,7 +83,7 @@ git pull upstream develop
 git checkout -b feature/amazing-feature
 ```
 
-## ?? Coding Standards
+## 📝 Coding Standards
 
 ### C# Style Guidelines
 
@@ -195,7 +195,7 @@ public class LoadingViewModel : BaseViewModel
 }
 ```
 
-## ?? Submitting Changes
+## 📤 Submitting Changes
 
 ### Commit Messages
 
@@ -281,7 +281,7 @@ docs(readme): update installation instructions
    - Make requested changes
    - Push updates to the same branch
 
-## ?? Reporting Issues
+## 🐛 Reporting Issues
 
 ### Before Submitting an Issue
 
@@ -316,7 +316,7 @@ What actually happens
 Any other relevant information
 ```
 
-## ?? Checklist for New Features
+## ✅ Checklist for New Features
 
 Before submitting a new feature:
 
@@ -330,7 +330,7 @@ Before submitting a new feature:
 - [ ] Performance impact considered
 - [ ] Cross-platform compatibility maintained (if applicable)
 
-## ?? Learning Resources
+## 📚 Learning Resources
 
 ### WPF Development
 - [Microsoft WPF Documentation](https://docs.microsoft.com/wpf)
@@ -344,7 +344,7 @@ Before submitting a new feature:
 - [GitHub Flow](https://guides.github.com/introduction/flow/)
 - [Git Documentation](https://git-scm.com/doc)
 
-## ?? Contact
+## 📧 Contact
 
 If you have questions about contributing:
 - Open a discussion on GitHub
@@ -352,4 +352,4 @@ If you have questions about contributing:
 
 ---
 
-Thank you for contributing to DotNet.WpfToolKit! ??
+Thank you for contributing to DotNet.WpfToolKit! 🎉

@@ -8,7 +8,7 @@
     ".NETCoreApp,Version=v10.0": {
       "DotNetTools.Wpfkit.Tests/1.0.0": {
         "dependencies": {
-          "DotNetTools.Wpfkit": "1.0.0",
+          "DotNetTools.Wpfkit": "1.0.1",
           "FluentAssertions": "6.12.2",
           "Microsoft.NET.Test.Sdk": "17.12.0",
           "Moq": "4.20.72",
@@ -376,15 +376,15 @@
           }
         }
       },
-      "DotNetTools.Wpfkit/1.0.0": {
+      "DotNetTools.Wpfkit/1.0.1": {
         "dependencies": {
           "Serilog": "4.3.0",
           "Tracetool.DotNet.Api": "14.0.0"
         },
         "runtime": {
           "DotNetTools.Wpfkit.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
+            "assemblyVersion": "1.0.1.0",
+            "fileVersion": "1.0.1.0"
           }
         }
       }
@@ -508,7 +508,7 @@
       "path": "xunit.extensibility.execution/2.9.2",
       "hashPath": "xunit.extensibility.execution.2.9.2.nupkg.sha512"
     },
-    "DotNetTools.Wpfkit/1.0.0": {
+    "DotNetTools.Wpfkit/1.0.1": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

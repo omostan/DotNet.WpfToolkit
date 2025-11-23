@@ -1,13 +1,13 @@
 # Quick Start Guide - DotNet.WpfToolKit
 
-## ?? Getting Started in 5 Minutes
+## 🚀 Getting Started in 5 Minutes
 
 ### Step 1: Add Test Project to Solution
 
 **Close Visual Studio first**, then reopen and:
 
 1. Right-click solution in Solution Explorer
-2. Select `Add` ? `Existing Project`
+2. Select `Add` → `Existing Project`
 3. Navigate to: `DotNet.WpfToolKit.Tests\DotNet.WpfToolKit.Tests.csproj`
 4. Click `Open`
 
@@ -20,7 +20,7 @@ dotnet build
 # Run all tests
 dotnet test
 
-# Expected: 140+ tests passing ?
+# Expected: 140+ tests passing ✅
 ```
 
 ### Step 3: View Documentation
@@ -32,7 +32,7 @@ dotnet test
 
 ---
 
-## ?? Manual Step Required
+## 📝 Manual Step Required
 
 ### Add Test Project to DotNet.slnx
 
@@ -64,7 +64,7 @@ Open `DotNet.slnx` in a text editor and add this line after the library project:
 
 ---
 
-## ? Verification Checklist
+## ✅ Verification Checklist
 
 After adding test project:
 
@@ -77,7 +77,7 @@ After adding test project:
 
 ---
 
-## ?? Common Commands
+## 💻 Common Commands
 
 ```bash
 # Build
@@ -98,7 +98,7 @@ dotnet clean
 
 ---
 
-## ?? Key Documents
+## 📚 Key Documents
 
 | Document | Purpose |
 |----------|---------|
@@ -113,13 +113,13 @@ dotnet clean
 
 ---
 
-## ?? You're All Set!
+## 🎉 You're All Set!
 
-**Project Status**: ? Complete  
-**Tests**: ? 140+ passing  
-**Coverage**: ? 90%+  
-**Documentation**: ? Comprehensive  
-**Build**: ? Successful  
+**Project Status**: ✅ Complete  
+**Tests**: ✅ 140+ passing  
+**Coverage**: ✅ 90%+  
+**Documentation**: ✅ Comprehensive  
+**Build**: ✅ Successful  
 
 **Next**: Add test project to solution and run tests!
 

@@ -44,7 +44,7 @@ dotnet nuget push nupkg/DotNet.WpfToolKit.1.0.0.nupkg \
 #   --source https://api.nuget.org/v3/index.json
 ```
 
-**?? Important:** 
+**⚠️ Important:** 
 - Push `.nupkg` (main package) FIRST
 - Symbols (`.snupkg`) are optional and come SECOND
 - Wait for "Your package was pushed" before pushing symbols

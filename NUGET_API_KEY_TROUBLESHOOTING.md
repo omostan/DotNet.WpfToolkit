@@ -1,4 +1,4 @@
-# ?? NuGet API Key Troubleshooting Guide
+# 🔧 NuGet API Key Troubleshooting Guide
 
 ## Error: 403 - API Key Invalid
 
@@ -11,7 +11,7 @@ permission to access the specified package.)
 
 ## Common Causes and Solutions
 
-### 1. ? Verify Your API Key is Correct
+### 1. ✅ Verify Your API Key is Correct
 
 #### Problem: Key was copied incorrectly
 - Extra spaces at beginning/end
@@ -30,7 +30,7 @@ permission to access the specified package.)
 echo $NUGET_API_KEY
 ```
 
-### 2. ? Check if API Key Has Expired
+### 2. ⏰ Check if API Key Has Expired
 
 #### Problem: Keys expire after set duration
 
@@ -40,7 +40,7 @@ echo $NUGET_API_KEY
 3. If expired, click "Regenerate"
 4. Update your stored key
 
-### 3. ?? Verify API Key Permissions
+### 3. 🔐 Verify API Key Permissions
 
 #### Problem: Key doesn't have push permissions
 
@@ -55,7 +55,7 @@ echo $NUGET_API_KEY
    - **Scopes**: Check "Push new packages and package versions"
    - **Expiration**: 365 days (or your preference)
 
-### 4. ?? Package Name Mismatch
+### 4. 📦 Package Name Mismatch
 
 #### Problem: API key is restricted to certain package patterns
 
@@ -71,7 +71,7 @@ Common patterns:
 - `DotNet.*` - All packages starting with "DotNet."
 - `DotNet.WpfToolKit*` - Only this package and variations
 
-### 5. ?? First Time Publishing This Package
+### 5. 🆕 First Time Publishing This Package
 
 #### Problem: API key created BEFORE package exists
 
@@ -89,7 +89,7 @@ DotNet.WpfToolKit*
 ```
 This matches: DotNet.WpfToolKit, DotNet.WpfToolKit.Core, etc.
 
-### 6. ?? Network/Proxy Issues
+### 6. 🌐 Network/Proxy Issues
 
 #### Problem: Corporate firewall or proxy blocking request
 
@@ -120,7 +120,7 @@ dotnet nuget push nupkg/DotNet.WpfToolKit.1.0.0.nupkg \
      Key Name: DotNet.WpfToolkit-Publish
      Expiration: 365 days
      Select Packages: All packages
-     Scopes: ? Push new packages and package versions
+     Scopes: ✅ Push new packages and package versions
      ```
    - Click "Create"
    - **COPY THE KEY IMMEDIATELY**
@@ -167,7 +167,7 @@ dotnet nuget push nupkg/DotNet.WpfToolKit.1.0.0.nupkg \
   --skip-duplicate
 ```
 
-**?? Warning**: Only do this in a private terminal, not in scripts committed to Git!
+**⚠️ Warning**: Only do this in a private terminal, not in scripts committed to Git!
 
 ## Verification Checklist
 
@@ -209,14 +209,14 @@ If API key issues persist, you can upload manually:
 
 ## Common Mistakes to Avoid
 
-? **DON'T**:
+❌ **DON'T**:
 - Use expired keys
 - Use keys with wrong permissions
 - Copy keys with extra whitespace
 - Commit keys to Git
 - Share keys publicly
 
-? **DO**:
+✅ **DO**:
 - Create fresh keys with full permissions
 - Store keys in environment variables
 - Test keys immediately after creation

@@ -18,7 +18,7 @@ A package icon helps your package stand out on NuGet.org and makes it more recog
 
 #### Canva (Recommended)
 1. Go to https://www.canva.com/
-2. Click "Custom size" ? 128 x 128 pixels
+2. Click "Custom size" → 128 x 128 pixels
 3. Design your icon using their templates
 4. Download as PNG with transparent background
 
@@ -64,18 +64,18 @@ Create a simple text-based icon with your package initials:
 ## Design Tips
 
 ### Good Icon Design
-? Simple and clear
-? Recognizable at small sizes
-? Uses 2-3 colors max
-? Has good contrast
-? Represents the package purpose
+✅ Simple and clear
+✅ Recognizable at small sizes
+✅ Uses 2-3 colors max
+✅ Has good contrast
+✅ Represents the package purpose
 
 ### Avoid
-? Too much detail (gets lost at small size)
-? Thin lines (hard to see)
-? Too many colors (looks messy)
-? Text that's too small to read
-? Copyrighted images/logos
+❌ Too much detail (gets lost at small size)
+❌ Thin lines (hard to see)
+❌ Too many colors (looks messy)
+❌ Text that's too small to read
+❌ Copyrighted images/logos
 
 ## Suggested Design Ideas for DotNet.WpfToolkit
 

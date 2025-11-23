@@ -1,4 +1,4 @@
-# ?? Quick Fix: NuGet API Key 403 Error
+# 🔧 Quick Fix: NuGet API Key 403 Error
 
 ## Your Error
 ```
@@ -24,10 +24,10 @@ have permission to access the specified package.)
    Expiration:   365 days
    Owner:        [Your username]
    
-   Select Packages:  ?? All packages (select this!)
+   Select Packages:  ✅ All packages (select this!)
    
    Scopes:
-   ? Push new packages and package versions
+   ✅ Push new packages and package versions
    
    Glob Pattern:  * (leave as is)
    ```
@@ -39,7 +39,7 @@ have permission to access the specified package.)
    oy2abcdefghijklmnopqrstuvwxyz1234567890abcdefghijk
    ```
    
-   ?? **You'll only see it once!**
+   ⚠️ **You'll only see it once!**
 
 ### Step 2: Store the Key (30 seconds)
 
@@ -106,89 +106,89 @@ Before trying again, verify:
 
 | Check | Status |
 |-------|--------|
-| ? Logged into NuGet.org | [ ] |
-| ? API key not expired | [ ] |
-| ? "Push" permission enabled | [ ] |
-| ? "All packages" selected | [ ] |
-| ? Key copied correctly (no spaces) | [ ] |
-| ? Using correct source URL | [ ] |
-| ? Package file exists | [ ] |
+| ✅ Logged into NuGet.org | [ ] |
+| ✅ API key not expired | [ ] |
+| ✅ "Push" permission enabled | [ ] |
+| ✅ "All packages" selected | [ ] |
+| ✅ Key copied correctly (no spaces) | [ ] |
+| ✅ Using correct source URL | [ ] |
+| ✅ Package file exists | [ ] |
 
 ## Screenshot Guide
 
 ### Creating API Key - What to Look For:
 
 ```
-???????????????????????????????????????????????
-?  Create API Key                              ?
-???????????????????????????????????????????????
-?  Key Name:  [DotNet.WpfToolkit-Publish]    ?
-?                                              ?
-?  Expiration:  [365 days ?]                  ?
-?                                              ?
-?  Select Packages:                            ?
-?  ? All packages          ? IMPORTANT!       ?
-?  ? Only selected packages                    ?
-?                                              ?
-?  Glob Pattern: [*]                          ?
-?                                              ?
-?  Scopes:                                     ?
-?  ? Push new packages and package versions  ?
-?  ? Push only new package versions           ?
-?  ? Unlist                                    ?
-?                                              ?
-?         [Create]  [Cancel]                   ?
-???????????????????????????????????????????????
+┌─────────────────────────────────────────────┐
+│  Create API Key                             │
+├─────────────────────────────────────────────┤
+│  Key Name:  [DotNet.WpfToolkit-Publish]     │
+│                                             │
+│  Expiration:  [365 days ▼]                  │
+│                                             │
+│  Select Packages:                           │
+│  ✅ All packages         ← IMPORTANT!	      │
+│  ⭕ Only selected packages		      │
+│                                             │
+│  Glob Pattern: [*]                          │
+│                                             │
+│  Scopes:                                    │
+│  ✅ Push new packages and package versions  │
+│  ⭕ Push only new package versions	      │
+│  ⭕ Unlist			              │
+│                                             │
+│         [Create]  [Cancel]                  │
+└─────────────────────────────────────────────┘
 ```
 
 ### After Clicking Create:
 
 ```
-???????????????????????????????????????????????
-?  ?? Save your API key!                      ?
-?                                              ?
-?  Copy and save this key now. You won't be   ?
-?  able to see it again.                       ?
-?                                              ?
-?  oy2abc...xyz123                             ?
-?                   [Copy] ? CLICK THIS!       ?
-?                                              ?
-?  [I have saved my key]                       ?
-???????????????????????????????????????????????
+┌──────────────────────────────────────────┐
+│  ⚠️ Save your API key!		   |
+│                                          │
+│  Copy and save this key now. You won't be│
+│  able to see it again.                   │
+│                                          │
+│  oy2abc...xyz123                         │
+│                   [Copy] ← CLICK THIS!   │
+│                                          │
+│  [I have saved my key]                   │
+└──────────────────────────────────────────┘
 ```
 
 ## Common Mistakes
 
-### ? Wrong: Restricted to specific package
+### ❌ Wrong: Restricted to specific package
 ```
-Select Packages: ? Only selected packages
+Select Packages: ⭕ Only selected packages
 Glob Pattern: [MyOtherPackage*]
 ```
 This won't work for first-time publishing `DotNet.WpfToolKit`!
 
-### ? Correct: All packages
+### ✅ Correct: All packages
 ```
-Select Packages: ? All packages
+Select Packages: ✅ All packages
 Glob Pattern: [*]
 ```
 
-### ? Wrong: No push permission
+### ❌ Wrong: No push permission
 ```
 Scopes:
-? Push new packages and package versions
-? Unlist
+⭕ Push new packages and package versions
+✅ Unlist
 ```
 
-### ? Correct: Push permission enabled
+### ✅ Correct: Push permission enabled
 ```
 Scopes:
-? Push new packages and package versions
+✅ Push new packages and package versions
 ```
 
 ## Need More Help?
 
-?? **Detailed Guide**: `NUGET_API_KEY_TROUBLESHOOTING.md`
-?? **Publishing Guide**: `NUGET_PUBLISHING_GUIDE.md`
+📚 **Detailed Guide**: `NUGET_API_KEY_TROUBLESHOOTING.md`
+📖 **Publishing Guide**: `NUGET_PUBLISHING_GUIDE.md`
 
 ## Quick Commands Reference
 
@@ -210,4 +210,4 @@ dotnet nuget push nupkg/DotNet.WpfToolKit.1.0.0.nupkg `
 
 ---
 
-**Most likely fix**: Create a fresh API key with "All packages" and "Push" permission! ?
+**Most likely fix**: Create a fresh API key with "All packages" and "Push" permission! ✅
