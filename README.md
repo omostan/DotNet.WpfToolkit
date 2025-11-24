@@ -22,12 +22,16 @@ A comprehensive WPF toolkit library providing essential components for building 
 
 **Key Features:**
 - **MVVM Components**: ObservableObject, BaseViewModel, ObservableRangeCollection
-- **Command Infrastructure**: Complete sync/async command implementations (ActionCommand, AsyncRelayCommand)
+- **Command Infrastructure**: Complete sync/async command implementations (ActionCommand, RelayCommand, AsyncRelayCommand)
 - **Logging Integration**: Serilog with context-aware extensions
 - **Configuration Management**: Runtime appsettings.json utilities
 - **.NET 10.0 Support**: Modern C# features with nullable reference types
 
-**✨ New in v1.0.2:**
+**✨ New in v1.0.3:**
+- 🐛 Fixed RelayCommand visibility - now properly public and accessible to developers
+- ✅ Full access to all command types for MVVM implementations
+
+**Previous Updates (v1.0.2):**
 - 🎯 Complete command infrastructure for MVVM applications
 - ⚡ Async command support with automatic execution state management
 - 🔒 Built-in concurrent execution prevention
@@ -105,7 +109,7 @@ This solution uses `.editorconfig` to maintain consistent code style across the 
 
 - [DotNetTools.Wpfkit Library Documentation](./DotNetTools.WpfKit/README.md)
 - [Quick Start Guide](./QUICK_START.md)
-- [Release Notes v1.0.2 - Commands](./release-notes-v1.0.2.md)
+- [Release Notes v1.0.3 - RelayCommand Fixes](./release-notes-v1.0.3.md)
 
 ## 🤝 Contributing
 

@@ -11,6 +11,7 @@ A comprehensive WPF toolkit library that provides essential components for build
 ## 📑 Table of Contents
 
 - [Overview](#overview)
+- [What's New](#whats-new)
 - [Features](#features)
 - [Installation](#installation)
 - [Requirements](#requirements)
@@ -27,6 +28,18 @@ A comprehensive WPF toolkit library that provides essential components for build
 ## 📋 Overview
 
 **DotNetTools.Wpfkit** is a modern .NET library designed to accelerate WPF application development by providing reusable, production-ready components. Built on .NET 10.0, it embraces modern C# features including nullable reference types, implicit usings, and follows best practices for WPF development.
+
+## 🎉 What's New
+
+### Version 1.0.3
+- **🐛 Bug Fix:** `RelayCommand` is now properly `public` and accessible to developers
+- **✅ Improved API:** Full access to all command implementations for MVVM applications
+
+### Version 1.0.2
+- Complete command infrastructure with sync/async support
+- AsyncRelayCommand with built-in exception handling
+- Automatic execution state management
+- Concurrent execution prevention
 
 ## ✨ Features
 
@@ -276,17 +289,37 @@ public class MyViewModel : BaseViewModel
 - Throws `ArgumentNullException` if action is null
 
 #### RelayCommand
-Internal implementation extending `ActionCommand` with the same functionality:
+Public synchronous command extending `ActionCommand` - now fully accessible in v1.0.3! ✨
 
 ```csharp
 using DotNetTools.Wpfkit.Commands;
 
-// RelayCommand is internally used but provides the same API
+// RelayCommand is now public and ready to use
 var command = new RelayCommand(
     action: param => Console.WriteLine($"Executed with {param}"),
     predicate: param => param != null
 );
+
+// Perfect for MVVM view models
+public class MyViewModel : BaseViewModel
+{
+    public ICommand MyCommand { get; }
+    
+    public MyViewModel()
+    {
+        MyCommand = new RelayCommand(
+            action: param => PerformAction(param),
+            predicate: param => CanPerform()
+        );
+    }
+}
 ```
+
+**Features:**
+- Same functionality as `ActionCommand`
+- Clean, intuitive API for MVVM implementations
+- Parameter validation through predicate
+- Integrates with `CommandManager.RequerySuggested`
 
 #### AsyncCommandBase
 Abstract base class for asynchronous command operations with automatic execution state management:
@@ -790,6 +823,7 @@ public class AsyncRelayCommand : AsyncCommandBase
 ```
 
 **Command Comparison Table:**
+
 | Command Type | Sync/Async | Use Case | Exception Handling | Concurrent Execution Prevention |
 |--------------|------------|----------|--------------------|---------------------------------|
 | CommandBase | Sync | Base for custom commands | Manual | No |

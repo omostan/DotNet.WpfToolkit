@@ -24,4 +24,4 @@
 
 namespace DotNetTools.Wpfkit.Commands;
 
-internal class RelayCommand(Action<object> action, Predicate<object>? predicate = null) : ActionCommand(action, predicate);
+public class RelayCommand(Action<object> action, Predicate<object>? predicate = null) : ActionCommand(action, predicate);
