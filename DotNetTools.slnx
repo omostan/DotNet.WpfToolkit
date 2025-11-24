@@ -21,6 +21,7 @@
     <File Path="QUICK_NUGET_PUBLISH.md" />
     <File Path="QUICK_START.md" />
     <File Path="README.md" />
+    <File Path="release-notes-v1.0.1.md" />
     <File Path="release-notes.md" />
     <File Path="UNIT_TESTS_SUMMARY.md" />
   </Folder>
