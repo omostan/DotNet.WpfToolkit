@@ -31,7 +31,7 @@ Version 1.0.5 is a **documentation-only release**. There are **no code changes**
 **Should you update?**
 - **Optional** - There are no functional differences
 - **Update if:** You want the most accurate documentation
-- **Skip if:** You're satisfied with v1.0.4 functionality
+- **Skip if:** You're satisfied with v1.0.4 functionality 
 
 **How to update:**
 ```bash

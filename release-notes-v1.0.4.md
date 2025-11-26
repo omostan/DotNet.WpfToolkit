@@ -16,7 +16,7 @@
 - Command parameter is `null`
 - A predicate is provided that attempts to access properties on the parameter
 - WPF's command infrastructure calls `CanExecute` during UI initialization
-- DataGrid columns bind to commands during layout
+- DataGrid columns bind to commands during layout 
 
 **Stack Trace Location:**
 ```
