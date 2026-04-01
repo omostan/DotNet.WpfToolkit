@@ -14,6 +14,10 @@ This directory contains generic release scripts for automating the release proce
 - **Platform**: Linux, macOS, Git Bash (Windows), WSL
 - **Best for**: Unix-like systems, CI/CD pipelines
 
+### 3. `release-checklist.sh` (Bash - One-command validation)
+- **Platform**: Linux, macOS, Git Bash (Windows), WSL
+- **Best for**: Pre-release verification without tagging/publishing
+
 ## Prerequisites
 
 ### All Platforms
@@ -59,6 +63,19 @@ chmod +x release.sh
 # Use environment variable for API key
 export NUGET_API_KEY="your-api-key"
 ./release.sh 1.0.3
+
+# One-command release checklist (no publish)
+./release-checklist.sh
+```
+
+### One-command checklist options
+
+```bash
+# Allow running when git tree is dirty
+./release-checklist.sh --allow-dirty
+
+# Skip package generation if you only want restore/build/test checks
+./release-checklist.sh --skip-pack
 ```
 
 ## Usage
