@@ -31,6 +31,21 @@ A comprehensive WPF toolkit library that provides essential components for build
 
 ## 🎉 What's New
 
+### Version 1.0.6 (Logging + Reliability) ✅
+**Released:** April 2026
+
+**Changes:**
+- **Added:** New `LogManager` enrichers: `WriteLine`, `WithPath`, `WithMember`
+- **Added:** `CompareCollections` helper utilities for collection diff/comparison workflows
+- **Changed:** Test suite alignment and reliability updates across test modules
+- **Packaging:** NuGet source mapping added for predictable restore behavior
+
+```bash
+dotnet add package DotNetTools.Wpfkit --version 1.0.6
+```
+
+---
+
 ### Version 1.0.5 (Documentation Update) 📝
 **Released:** November 2025
 
@@ -123,24 +138,24 @@ dotnet add package DotNetTools.Wpfkit --version 1.0.4
 
 ### NuGet Package
 
-**Latest Version (v1.0.5):**
+**Latest Version (v1.0.6):**
 ```bash
-dotnet add package DotNetTools.Wpfkit --version 1.0.5
+dotnet add package DotNetTools.Wpfkit --version 1.0.6
 ```
 
 Or via Package Manager Console in Visual Studio:
 ```bash
-Install-Package DotNetTools.Wpfkit -Version 1.0.5
+Install-Package DotNetTools.Wpfkit -Version 1.0.6
 ```
 
 Or add directly to your `.csproj`:
 ```xml
-<PackageReference Include="DotNetTools.Wpfkit" Version="1.0.5" />
+<PackageReference Include="DotNetTools.Wpfkit" Version="1.0.6" />
 ```
 
-ℹ️ **Note:** v1.0.5 is a documentation update. v1.0.4 contains the critical bug fix.
+ℹ️ **Note:** v1.0.6 adds non-breaking logging and utility enhancements.
 
-⚠️ **Important:** v1.0.3 and earlier contain a critical bug. Please use v1.0.4 or v1.0.5.
+⚠️ **Important:** v1.0.3 and earlier contain a critical bug. Please use v1.0.4 or later.
 
 ### Manual Installation
 1. Clone the repository

@@ -85,10 +85,10 @@ public class ObservableObjectTests
     public void SetProperty_WhenValueChanges_ShouldReturnTrue()
     {
         // Arrange
-        var obj = new TestObservableObject();
+        TestObservableObject obj = new();
 
         // Act
-        var result = obj.Name = "John";
+        string result = obj.Name = "John";
 
         // Assert
         obj.Name.Should().Be("John");
@@ -98,7 +98,7 @@ public class ObservableObjectTests
     public void SetProperty_WhenValueIsSame_ShouldReturnFalse()
     {
         // Arrange
-        var obj = new TestObservableObject { Name = "John" };
+        TestObservableObject obj = new() { Name = "John" };
 
         // Act & Assert
         obj.Name = "John";
@@ -109,8 +109,8 @@ public class ObservableObjectTests
     public void SetProperty_WhenValueChanges_ShouldRaisePropertyChanged()
     {
         // Arrange
-        var obj = new TestObservableObject();
-        var eventRaised = false;
+        TestObservableObject obj = new();
+        bool eventRaised = false;
         string? propertyName = null;
 
         obj.PropertyChanged += (sender, args) =>
@@ -131,8 +131,8 @@ public class ObservableObjectTests
     public void SetProperty_WhenValueIsSame_ShouldNotRaisePropertyChanged()
     {
         // Arrange
-        var obj = new TestObservableObject { Name = "John" };
-        var eventRaised = false;
+        TestObservableObject obj = new() { Name = "John" };
+        bool eventRaised = false;
 
         obj.PropertyChanged += (sender, args) => eventRaised = true;
 
@@ -147,7 +147,7 @@ public class ObservableObjectTests
     public void SetProperty_WithOnChanged_ShouldInvokeCallback()
     {
         // Arrange
-        var obj = new TestObservableObject();
+        TestObservableObject obj = new();
 
         // Act
         obj.Counter = 1;
@@ -161,8 +161,8 @@ public class ObservableObjectTests
     public void SetProperty_WithOnChanged_WhenValueIsSame_ShouldNotInvokeCallback()
     {
         // Arrange
-        var obj = new TestObservableObject { Counter = 5 };
-        var initialCallCount = obj.OnChangedCallCount;
+        TestObservableObject obj = new() { Counter = 5 };
+        int initialCallCount = obj.OnChangedCallCount;
 
         // Act
         obj.Counter = 5;
@@ -175,7 +175,7 @@ public class ObservableObjectTests
     public void SetProperty_WithValidation_WhenValid_ShouldSetValue()
     {
         // Arrange
-        var obj = new TestObservableObject();
+        TestObservableObject obj = new();
 
         // Act
         obj.Email = "test@example.com";
@@ -188,7 +188,7 @@ public class ObservableObjectTests
     public void SetProperty_WithValidation_WhenInvalid_ShouldNotSetValue()
     {
         // Arrange
-        var obj = new TestObservableObject { Email = "test@example.com" };
+        TestObservableObject obj = new() { Email = "test@example.com" };
 
         // Act
         obj.Email = "invalid-email";
@@ -201,8 +201,8 @@ public class ObservableObjectTests
     public void SetProperty_WithValidation_WhenInvalid_ShouldNotRaisePropertyChanged()
     {
         // Arrange
-        var obj = new TestObservableObject { Email = "test@example.com" };
-        var eventRaised = false;
+        TestObservableObject obj = new() { Email = "test@example.com" };
+        bool eventRaised = false;
 
         obj.PropertyChanged += (sender, args) => eventRaised = true;
 
@@ -221,7 +221,7 @@ public class ObservableObjectTests
     public void PropertyChanged_ShouldImplementINotifyPropertyChanged()
     {
         // Arrange & Act
-        var obj = new TestObservableObject();
+        TestObservableObject obj = new();
 
         // Assert
         obj.Should().BeAssignableTo<INotifyPropertyChanged>();
@@ -231,8 +231,8 @@ public class ObservableObjectTests
     public void PropertyChanged_WhenMultiplePropertiesChange_ShouldRaiseForEach()
     {
         // Arrange
-        var obj = new TestObservableObject();
-        var changedProperties = new List<string?>();
+        TestObservableObject obj = new();
+        List<string?> changedProperties = new();
 
         obj.PropertyChanged += (sender, args) => changedProperties.Add(args.PropertyName);
 
@@ -252,7 +252,7 @@ public class ObservableObjectTests
     public void PropertyChanged_ShouldPassCorrectSender()
     {
         // Arrange
-        var obj = new TestObservableObject();
+        TestObservableObject obj = new();
         object? sender = null;
 
         obj.PropertyChanged += (s, args) => sender = s;
@@ -272,8 +272,8 @@ public class ObservableObjectTests
     public void OnPropertyChanged_WithEmptyPropertyName_ShouldRaiseEvent()
     {
         // Arrange
-        var obj = new TestObservableObject();
-        var eventRaised = false;
+        TestObservableObject obj = new();
+        bool eventRaised = false;
 
         obj.PropertyChanged += (sender, args) => eventRaised = true;
 
@@ -292,7 +292,7 @@ public class ObservableObjectTests
     public void SetProperty_WithInt_ShouldWorkCorrectly()
     {
         // Arrange
-        var obj = new TestObservableObject();
+        TestObservableObject obj = new();
 
         // Act
         obj.Age = 25;
@@ -305,7 +305,7 @@ public class ObservableObjectTests
     public void SetProperty_WithBool_ShouldWorkCorrectly()
     {
         // Arrange
-        var obj = new TestObservableObject
+        TestObservableObject obj = new()
         {
             // Act
             IsActive = true
@@ -319,7 +319,7 @@ public class ObservableObjectTests
     public void SetProperty_WithDefaultValues_ShouldWorkCorrectly()
     {
         // Arrange
-        var obj = new TestObservableObject();
+        TestObservableObject obj = new();
 
         // Assert
         obj.Name.Should().Be(string.Empty);
@@ -335,14 +335,14 @@ public class ObservableObjectTests
     public async Task SetProperty_WithMultipleThreads_ShouldBeThreadSafe()
     {
         // Arrange
-        var obj = new TestObservableObject();
-        var exceptions = new List<Exception>();
-        var tasks = new List<Task>();
+        TestObservableObject obj = new();
+        List<Exception> exceptions = new();
+        List<Task> tasks = new();
 
         // Act
         for (int i = 0; i < 10; i++)
         {
-            var index = i;
+            int index = i;
             tasks.Add(Task.Run(() =>
             {
                 try
@@ -374,8 +374,8 @@ public class ObservableObjectTests
     public void SetProperty_ComplexScenario_WithValidationAndCallback_ShouldWorkCorrectly()
     {
         // Arrange
-        var obj = new TestObservableObject();
-        var propertyChangedCount = 0;
+        TestObservableObject obj = new();
+        int propertyChangedCount = 0;
 
         obj.PropertyChanged += (sender, args) =>
         {

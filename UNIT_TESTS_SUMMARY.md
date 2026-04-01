@@ -2,16 +2,16 @@
 
 ## Test Project Created Successfully! 🎉
 
-A comprehensive unit test project has been added to the DotNet.WpfToolKit solution with full test coverage for all components.
+A comprehensive unit test project is available in the DotNetTools solution with broad coverage across MVVM, commands, logging, and configuration components.
 
 ---
 
 ## Project Structure 📁
 
-### Test Project: **DotNet.WpfToolKit.Tests**
+### Test Project: **DotNetTools.Wpfkit.Tests**
 
 ```
-DotNet.WpfToolKit.Tests/
+DotNetTools.WpfKit.Tests/
 ├── MvvM/
 │   ├── ObservableObjectTests.cs          # 25+ tests
 │   ├── BaseViewModelTests.cs              # 30+ tests
@@ -20,7 +20,8 @@ DotNet.WpfToolKit.Tests/
 │   └── LogManagerTests.cs                 # 20+ tests
 ├── Database/
 │   └── AppSettingsUpdaterTests.cs         # 25+ tests
-├── DotNet.WpfToolKit.Tests.csproj         # Project file
+├── Commands/                              # Command tests (Action/Relay/AsyncRelay)
+├── DotNetTools.Wpfkit.Tests.csproj        # Project file
 ├── GlobalUsings.cs                        # Global using directives
 └── README.md                              # Test documentation
 ```
@@ -31,15 +32,16 @@ DotNet.WpfToolKit.Tests/
 
 ### Total Test Coverage
 
-| Component | Test File | Test Count | Categories |
-|-----------|-----------|------------|------------|
-| **ObservableObject** | ObservableObjectTests.cs | 25+ | Property tests, validation, callbacks, events |
-| **BaseViewModel** | BaseViewModelTests.cs | 30+ | All 8 properties, IsBusy sync, integration |
-| **ObservableRangeCollection** | ObservableRangeCollectionTests.cs | 40+ | AddRange, RemoveRange, Replace, performance |
-| **LogManager** | LogManagerTests.cs | 20+ | Logger creation, Me extension, integration |
-| **AppSettingsUpdater** | AppSettingsUpdaterTests.cs | 25+ | Connection strings, error handling, JSON |
+| Component                     | Test File                         | Test Count | Categories                                          |
+|-------------------------------|-----------------------------------|------------|-----------------------------------------------------|
+| **ObservableObject**          | ObservableObjectTests.cs          | 25+        | Property tests, validation, callbacks, events       |
+| **BaseViewModel**             | BaseViewModelTests.cs             | 30+        | All 8 properties, IsBusy sync, integration          |
+| **ObservableRangeCollection** | ObservableRangeCollectionTests.cs | 40+        | AddRange, RemoveRange, Replace, performance         |
+| **Commands**                  | Action/Relay/AsyncRelay tests     | 140+       | CanExecute, Execute, null handling, threading       |
+| **LogManager**                | LogManagerTests.cs                | 20+        | Logger creation, enrichment extensions, integration |
+| **AppSettingsUpdater**        | AppSettingsUpdaterTests.cs        | 25+        | Connection strings, error handling, JSON            |
 
-**Total**: **140+ comprehensive unit tests**
+**Total**: **187 comprehensive unit tests**
 
 ---
 

@@ -27,9 +27,10 @@ A comprehensive WPF toolkit library providing essential components for building 
 - **Configuration Management**: Runtime appsettings.json utilities
 - **.NET 10.0 Support**: Modern C# features with nullable reference types
 
-**✨ New in v1.0.3:**
-- 🐛 Fixed RelayCommand visibility - now properly public and accessible to developers
-- ✅ Full access to all command types for MVVM implementations
+**✨ New in v1.0.6:**
+- 🧩 Added new logging enrichment methods: `WriteLine`, `WithPath`, and `WithMember`
+- 🛠️ Added `CompareCollections` helper utilities for collection comparisons and change detection
+- ✅ Test suite verified: 187 tests passing
 
 **Previous Updates (v1.0.2):**
 - 🎯 Complete command infrastructure for MVVM applications
@@ -109,7 +110,7 @@ This solution uses `.editorconfig` to maintain consistent code style across the 
 
 - [DotNetTools.Wpfkit Library Documentation](./DotNetTools.WpfKit/README.md)
 - [Quick Start Guide](./QUICK_START.md)
-- [Release Notes v1.0.3 - RelayCommand Fixes](./release-notes-v1.0.3.md)
+- [Release Notes v1.0.6](./release-notes-v1.0.6.md)
 
 ## 🤝 Contributing
 

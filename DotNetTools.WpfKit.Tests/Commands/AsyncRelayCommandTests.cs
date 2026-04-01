@@ -23,6 +23,7 @@
 #endregion copyright
 
 using DotNetTools.Wpfkit.Commands;
+using System.Diagnostics;
 using System.Windows.Input;
 
 namespace DotNetTools.Wpfkit.Tests.Commands;
@@ -39,7 +40,7 @@ public class AsyncRelayCommandTests
     public void Constructor_WithValidCallback_ShouldCreateCommand()
     {
         // Arrange & Act
-        var command = new AsyncRelayCommand(
+        AsyncRelayCommand command = new(
             async () => await Task.CompletedTask,
             _ => { }
         );
@@ -77,13 +78,13 @@ public class AsyncRelayCommandTests
     public void CanExecute_WhenNotExecuting_ShouldReturnTrue()
     {
         // Arrange
-        var command = new AsyncRelayCommand(
+        AsyncRelayCommand command = new(
             async () => await Task.CompletedTask,
             ex => { }
         );
 
         // Act
-        var result = command.CanExecute(null);
+        bool result = command.CanExecute(null);
 
         // Assert
         result.Should().BeTrue();
@@ -93,8 +94,8 @@ public class AsyncRelayCommandTests
     public async Task CanExecute_WhileExecuting_ShouldReturnFalse()
     {
         // Arrange
-        var tcs = new TaskCompletionSource<bool>();
-        var command = new AsyncRelayCommand(
+        TaskCompletionSource<bool> tcs = new();
+        AsyncRelayCommand command = new(
             async () => await tcs.Task,
             ex => { }
         );
@@ -103,12 +104,12 @@ public class AsyncRelayCommandTests
         command.Execute(null);
         await Task.Delay(50); // Give it time to start
 
-        var canExecuteWhileRunning = command.CanExecute(null);
+        bool canExecuteWhileRunning = command.CanExecute(null);
 
         tcs.SetResult(true);
         await Task.Delay(100); // Give it time to complete
 
-        var canExecuteAfterComplete = command.CanExecute(null);
+        bool canExecuteAfterComplete = command.CanExecute(null);
 
         // Assert
         canExecuteWhileRunning.Should().BeFalse();
@@ -123,8 +124,8 @@ public class AsyncRelayCommandTests
     public async Task Execute_ShouldInvokeCallback()
     {
         // Arrange
-        var executed = false;
-        var command = new AsyncRelayCommand(
+        bool executed = false;
+        AsyncRelayCommand command = new(
             async () =>
             {
                 await Task.Delay(10);
@@ -145,10 +146,10 @@ public class AsyncRelayCommandTests
     public async Task Execute_MultipleTimes_ShouldPreventConcurrentExecution()
     {
         // Arrange
-        var executionCount = 0;
-        var tcs = new TaskCompletionSource<bool>();
+        int executionCount = 0;
+        TaskCompletionSource<bool> tcs = new();
 
-        var command = new AsyncRelayCommand(
+        AsyncRelayCommand command = new(
             async () =>
             {
                 executionCount++;
@@ -178,9 +179,9 @@ public class AsyncRelayCommandTests
     {
         // Arrange
         Exception? capturedException = null;
-        var expectedMessage = "Test exception";
+        string expectedMessage = "Test exception";
 
-        var command = new AsyncRelayCommand(
+        AsyncRelayCommand command = new(
             async () =>
             {
                 await Task.Delay(10);
@@ -203,8 +204,8 @@ public class AsyncRelayCommandTests
     public async Task Execute_AfterException_ShouldResetExecutionState()
     {
         // Arrange
-        var executionCount = 0;
-        var command = new AsyncRelayCommand(
+        int executionCount = 0;
+        AsyncRelayCommand command = new(
             async () =>
             {
                 await Task.Delay(10);
@@ -220,7 +221,7 @@ public class AsyncRelayCommandTests
         await Task.Delay(100);
 
         // Should be able to execute again after exception
-        var canExecuteAfterError = command.CanExecute(null);
+        bool canExecuteAfterError = command.CanExecute(null);
         command.Execute(null);
         await Task.Delay(100);
 
@@ -240,11 +241,11 @@ public class AsyncRelayCommandTests
         Exception? capturedException = null;
         string? nullString = null;
 
-        var command = new AsyncRelayCommand(
+        AsyncRelayCommand command = new(
             async () =>
             {
                 await Task.Delay(10);
-                var length = nullString!.Length; // Will throw NullReferenceException
+                int length = nullString!.Length; // Will throw NullReferenceException
             },
             ex => capturedException = ex
         );
@@ -261,10 +262,10 @@ public class AsyncRelayCommandTests
     public async Task Execute_WithMultipleExceptions_ShouldHandleEach()
     {
         // Arrange
-        var exceptions = new List<Exception>();
-        var attemptCount = 0;
+        List<Exception> exceptions = [];
+        int attemptCount = 0;
 
-        var command = new AsyncRelayCommand(
+        AsyncRelayCommand command = new(
             async () =>
             {
                 await Task.Delay(10);
@@ -299,9 +300,9 @@ public class AsyncRelayCommandTests
     public async Task MVVM_Scenario_LoadDataCommand_ShouldWork()
     {
         // Arrange
-        var data = new List<string>();
+        List<string> data = [];
 
-        var command = new AsyncRelayCommand(
+        AsyncRelayCommand command = new(
             async () =>
             {
                 _ = true;
@@ -330,11 +331,11 @@ public class AsyncRelayCommandTests
     public async Task MVVM_Scenario_SaveCommand_WithErrorHandling_ShouldWork()
     {
         // Arrange
-        var saveAttempts = 0;
-        var errorOccurred = false;
+        int saveAttempts = 0;
+        bool errorOccurred = false;
         string? errorMessage = null;
 
-        var command = new AsyncRelayCommand(
+        AsyncRelayCommand command = new(
             async () =>
             {
                 saveAttempts++;
@@ -354,7 +355,7 @@ public class AsyncRelayCommandTests
         command.Execute(null);
         await Task.Delay(100);
 
-        var firstAttemptError = errorOccurred;
+        bool firstAttemptError = errorOccurred;
 
         // Reset error state
         errorOccurred = false;
@@ -374,9 +375,9 @@ public class AsyncRelayCommandTests
     public async Task MVVM_Scenario_RefreshCommand_PreventDoubleClick_ShouldWork()
     {
         // Arrange
-        var refreshCount = 0;
+        int refreshCount = 0;
 
-        var command = new AsyncRelayCommand(
+        AsyncRelayCommand command = new(
             async () =>
             {
                 refreshCount++;
@@ -404,8 +405,8 @@ public class AsyncRelayCommandTests
     public async Task Execute_FromMultipleThreads_ShouldBeThreadSafe()
     {
         // Arrange
-        var counter = 0;
-        var command = new AsyncRelayCommand(
+        int counter = 0;
+        AsyncRelayCommand command = new(
             async () =>
             {
                 await Task.Delay(10);
@@ -415,7 +416,7 @@ public class AsyncRelayCommandTests
         );
 
         // Act
-        var tasks = Enumerable.Range(0, 10)
+        Task[] tasks = Enumerable.Range(0, 10)
             .Select(_ => Task.Run(() => command.Execute(null)))
             .ToArray();
 
@@ -433,10 +434,10 @@ public class AsyncRelayCommandTests
     public async Task CanExecuteChanged_ShouldFireWhenExecutionStateChanges()
     {
         // Arrange
-        var tcs = new TaskCompletionSource<bool>();
-        var canExecuteChangedCount = 0;
+        TaskCompletionSource<bool> tcs = new();
+        int canExecuteChangedCount = 0;
 
-        var command = new AsyncRelayCommand(
+        AsyncRelayCommand command = new(
             async () => await tcs.Task,
             ex => { }
         );
@@ -447,12 +448,12 @@ public class AsyncRelayCommandTests
         command.Execute(null);
         await Task.Delay(50);
 
-        var countWhileExecuting = canExecuteChangedCount;
+        int countWhileExecuting = canExecuteChangedCount;
 
         tcs.SetResult(true);
         await Task.Delay(100);
 
-        var countAfterComplete = canExecuteChangedCount;
+        int countAfterComplete = canExecuteChangedCount;
 
         // Assert
         countWhileExecuting.Should().BeGreaterThan(0);
@@ -467,9 +468,9 @@ public class AsyncRelayCommandTests
     public async Task ComplexScenario_ChainedAsyncOperations_ShouldWork()
     {
         // Arrange
-        var operations = new List<string>();
+        List<string> operations = [];
 
-        var command = new AsyncRelayCommand(
+        AsyncRelayCommand command = new(
             async () =>
             {
                 operations.Add("Start");
@@ -501,15 +502,15 @@ public class AsyncRelayCommandTests
     public async Task ComplexScenario_CancellationDuringExecution_ShouldHandle()
     {
         // Arrange
-        var cts = new CancellationTokenSource();
-        var wasCancelled = false;
+        CancellationTokenSource cts = new();
+        bool wasCancelled = false;
 
-        var command = new AsyncRelayCommand(
+        AsyncRelayCommand command = new(
             async () =>
             {
-                await Task.Delay(50);
+                await Task.Delay(50, cts.Token);
                 cts.Token.ThrowIfCancellationRequested();
-                await Task.Delay(50);
+                await Task.Delay(50, cts.Token);
             },
             ex =>
             {
@@ -536,8 +537,8 @@ public class AsyncRelayCommandTests
     public async Task Performance_ManySequentialExecutions_ShouldComplete()
     {
         // Arrange
-        var executionCount = 0;
-        var command = new AsyncRelayCommand(
+        int executionCount = 0;
+        AsyncRelayCommand command = new(
             async () =>
             {
                 await Task.Delay(5);
@@ -546,7 +547,7 @@ public class AsyncRelayCommandTests
             ex => { }
         );
 
-        var stopwatch = System.Diagnostics.Stopwatch.StartNew();
+        Stopwatch stopwatch = System.Diagnostics.Stopwatch.StartNew();
 
         // Act
         for (int i = 0; i < 10; i++)

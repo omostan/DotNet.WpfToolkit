@@ -6,16 +6,16 @@
     <LangVersion>14.0</LangVersion>
     <Nullable>enable</Nullable>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    
+
     <!-- Package-specific metadata -->
     <PackageId>DotNetTools.Wpfkit</PackageId>
     <Title>DotNetTools WPF Toolkit</Title>
     <Description>A comprehensive WPF toolkit library providing MVVM components, command infrastructure, logging utilities, and configuration management for modern Windows desktop applications. Now includes complete sync/async command implementations with automatic state management and exception handling.</Description>
     <PackageTags>wpf;mvvm;toolkit;observable;viewmodel;commands;icommand;async;serilog;logging;dotnet10;windows;observablecollection;inotifypropertychanged;relaycommand;asynccommand</PackageTags>
-    <Version>1.0.5</Version>
-    <AssemblyVersion>1.0.5.0</AssemblyVersion>
-    <FileVersion>1.0.5.0</FileVersion>
-    
+    <Version>1.0.6</Version>
+    <AssemblyVersion>1.0.6.0</AssemblyVersion>
+    <FileVersion>1.0.6.0</FileVersion>
+
     <!-- Author and Company Information -->
     <Authors>Stanley Omoregie</Authors>
     <Company>Omotech Digital Solutions</Company>
@@ -23,16 +23,16 @@
     <PackageProjectUrl>https://github.com/omostan/DotNetTools.Wpfkit</PackageProjectUrl>
     <RepositoryUrl>https://github.com/omostan/DotNetTools.Wpfkit</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    
+
     <!-- License Information -->
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    
+
     <!-- Package Icon and README -->
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    
+
     <!-- Release Notes -->
-    <PackageReleaseNotes>v1.0.5: Documentation update for v1.0.4 hotfix (corrected release date to November 2025). Functionally identical to v1.0.4 - same critical NullReferenceException fix. See release-notes-v1.0.4.md for technical details.</PackageReleaseNotes>
-    
+    <PackageReleaseNotes>v1.0.6: Logging API enhancements with new context enrichment methods (WriteLine, WithPath, WithMember), collection comparison helper utilities, test-suite modernization (187 passing tests), and NuGet source mapping hardening for reliable package restore.</PackageReleaseNotes>
+
     <!-- Additional Metadata -->
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>

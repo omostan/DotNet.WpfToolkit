@@ -23,6 +23,7 @@
 #endregion copyright
 
 using DotNetTools.Wpfkit.Commands;
+using System.Diagnostics;
 using System.Windows.Input;
 
 namespace DotNetTools.Wpfkit.Tests.Commands;
@@ -39,7 +40,7 @@ public class ActionCommandTests
     public void Constructor_WithValidAction_ShouldCreateCommand()
     {
         // Arrange & Act
-        var command = new ActionCommand(param => { });
+        ActionCommand command = new(param => { });
 
         // Assert
         command.Should().NotBeNull();
@@ -50,7 +51,10 @@ public class ActionCommandTests
     public void Constructor_WithNullAction_ShouldThrowArgumentNullException()
     {
         // Act
-        Action act = () => new ActionCommand(null!);
+        Action act = () =>
+        {
+            ActionCommand actionCommand = new(null!);
+        };
 
         // Assert
         act.Should().Throw<ArgumentNullException>()
@@ -61,7 +65,7 @@ public class ActionCommandTests
     public void Constructor_WithNullPredicate_ShouldCreateCommand()
     {
         // Arrange & Act
-        var command = new ActionCommand(param => { }, null);
+        ActionCommand command = new(param => { }, null);
 
         // Assert
         command.Should().NotBeNull();
@@ -75,10 +79,10 @@ public class ActionCommandTests
     public void CanExecute_WithNoPredicate_ShouldReturnTrue()
     {
         // Arrange
-        var command = new ActionCommand(param => { });
+        ActionCommand command = new(param => { });
 
         // Act
-        var result = command.CanExecute(null);
+        bool result = command.CanExecute(null);
 
         // Assert
         result.Should().BeTrue();
@@ -88,10 +92,10 @@ public class ActionCommandTests
     public void CanExecute_WithNoPredicateAndNullParameter_ShouldReturnTrue()
     {
         // Arrange
-        var command = new ActionCommand(param => { });
+        ActionCommand command = new(param => { });
 
         // Act
-        var result = command.CanExecute(null);
+        bool result = command.CanExecute(null);
 
         // Assert
         result.Should().BeTrue();
@@ -101,10 +105,10 @@ public class ActionCommandTests
     public void CanExecute_WithNoPredicateAndNonNullParameter_ShouldReturnTrue()
     {
         // Arrange
-        var command = new ActionCommand(param => { });
+        ActionCommand command = new(param => { });
 
         // Act
-        var result = command.CanExecute("test");
+        bool result = command.CanExecute("test");
 
         // Assert
         result.Should().BeTrue();
@@ -118,13 +122,13 @@ public class ActionCommandTests
     public void CanExecute_WithPredicateReturningTrue_ShouldReturnTrue()
     {
         // Arrange
-        var command = new ActionCommand(
+        ActionCommand command = new(
             param => { },
             param => true
         );
 
         // Act
-        var result = command.CanExecute(null);
+        bool result = command.CanExecute(null);
 
         // Assert
         result.Should().BeTrue();
@@ -134,13 +138,13 @@ public class ActionCommandTests
     public void CanExecute_WithPredicateReturningFalse_ShouldReturnFalse()
     {
         // Arrange
-        var command = new ActionCommand(
+        ActionCommand command = new(
             param => { },
             param => false
         );
 
         // Act
-        var result = command.CanExecute(null);
+        bool result = command.CanExecute(null);
 
         // Assert
         result.Should().BeFalse();
@@ -150,13 +154,13 @@ public class ActionCommandTests
     public void CanExecute_WithPredicateCheckingNull_AndNullParameter_ShouldWork()
     {
         // Arrange
-        var command = new ActionCommand(
+        ActionCommand command = new(
             param => { },
             param => param != null
         );
 
         // Act
-        var result = command.CanExecute(null);
+        bool result = command.CanExecute(null);
 
         // Assert
         result.Should().BeFalse();
@@ -166,13 +170,13 @@ public class ActionCommandTests
     public void CanExecute_WithPredicateCheckingNull_AndNonNullParameter_ShouldWork()
     {
         // Arrange
-        var command = new ActionCommand(
+        ActionCommand command = new(
             param => { },
             param => param != null
         );
 
         // Act
-        var result = command.CanExecute("test");
+        bool result = command.CanExecute("test");
 
         // Assert
         result.Should().BeTrue();
@@ -182,13 +186,13 @@ public class ActionCommandTests
     public void CanExecute_WithPredicateAccessingParameter_AndNullParameter_ShouldReturnFalse()
     {
         // Arrange - This simulates the bug scenario
-        var command = new ActionCommand(
+        ActionCommand command = new(
             param => { },
             param => param!.ToString()!.Length > 0  // Will throw NullReferenceException if not handled
         );
 
         // Act
-        var result = command.CanExecute(null);
+        bool result = command.CanExecute(null);
 
         // Assert
         result.Should().BeFalse(); // Should return false instead of crashing
@@ -198,13 +202,13 @@ public class ActionCommandTests
     public void CanExecute_WithTypeCheckPredicate_AndCorrectType_ShouldReturnTrue()
     {
         // Arrange
-        var command = new ActionCommand(
+        ActionCommand command = new(
             param => { },
             param => param is string
         );
 
         // Act
-        var result = command.CanExecute("test");
+        bool result = command.CanExecute("test");
 
         // Assert
         result.Should().BeTrue();
@@ -214,13 +218,13 @@ public class ActionCommandTests
     public void CanExecute_WithTypeCheckPredicate_AndIncorrectType_ShouldReturnFalse()
     {
         // Arrange
-        var command = new ActionCommand(
+        ActionCommand command = new(
             param => { },
             param => param is string
         );
 
         // Act
-        var result = command.CanExecute(123);
+        bool result = command.CanExecute(123);
 
         // Assert
         result.Should().BeFalse();
@@ -230,7 +234,7 @@ public class ActionCommandTests
     public void CanExecute_WithComplexPredicate_ShouldEvaluateCorrectly()
     {
         // Arrange
-        var command = new ActionCommand(
+        ActionCommand command = new(
             param => { },
             param => param is string str && !string.IsNullOrEmpty(str) && str.Length > 3
         );
@@ -251,13 +255,13 @@ public class ActionCommandTests
     public void CanExecute_WhenPredicateThrowsException_ShouldReturnFalse()
     {
         // Arrange
-        var command = new ActionCommand(
+        ActionCommand command = new(
             param => { },
             param => throw new InvalidOperationException("Test exception")
         );
 
         // Act
-        var result = command.CanExecute(null);
+        bool result = command.CanExecute(null);
 
         // Assert
         result.Should().BeFalse();
@@ -268,13 +272,13 @@ public class ActionCommandTests
     {
         // Arrange
         string? nullString = null;
-        var command = new ActionCommand(
+        ActionCommand command = new(
             param => { },
             param => nullString!.Length > 0  // Will throw NullReferenceException
         );
 
         // Act
-        var result = command.CanExecute(null);
+        bool result = command.CanExecute(null);
 
         // Assert
         result.Should().BeFalse();
@@ -284,13 +288,13 @@ public class ActionCommandTests
     public void CanExecute_WhenPredicateThrowsInvalidCastException_ShouldReturnFalse()
     {
         // Arrange
-        var command = new ActionCommand(
+        ActionCommand command = new(
             param => { },
             param => ((string)param!).Length > 0  // Will throw InvalidCastException with int
         );
 
         // Act
-        var result = command.CanExecute(123);
+        bool result = command.CanExecute(123);
 
         // Assert
         result.Should().BeFalse();
@@ -304,8 +308,8 @@ public class ActionCommandTests
     public void Execute_ShouldInvokeAction()
     {
         // Arrange
-        var actionInvoked = false;
-        var command = new ActionCommand(param => actionInvoked = true);
+        bool actionInvoked = false;
+        ActionCommand command = new(param => actionInvoked = true);
 
         // Act
         command.Execute(null);
@@ -319,7 +323,7 @@ public class ActionCommandTests
     {
         // Arrange
         object? capturedParameter = null;
-        var command = new ActionCommand(param => capturedParameter = param);
+        ActionCommand command = new(param => capturedParameter = param);
 
         // Act
         command.Execute("test");
@@ -333,7 +337,7 @@ public class ActionCommandTests
     {
         // Arrange
         object? capturedParameter = "initial";
-        var command = new ActionCommand(param => capturedParameter = param);
+        ActionCommand command = new(param => capturedParameter = param);
 
         // Act
         command.Execute(null);
@@ -346,8 +350,8 @@ public class ActionCommandTests
     public void Execute_MultipleTimes_ShouldInvokeActionEachTime()
     {
         // Arrange
-        var invokeCount = 0;
-        var command = new ActionCommand(param => invokeCount++);
+        int invokeCount = 0;
+        ActionCommand command = new(param => invokeCount++);
 
         // Act
         command.Execute(null);
@@ -362,8 +366,8 @@ public class ActionCommandTests
     public void Execute_WithDifferentParameters_ShouldPassEachCorrectly()
     {
         // Arrange
-        var parameters = new List<object?>();
-        var command = new ActionCommand(param => parameters.Add(param));
+        List<object?> parameters = new();
+        ActionCommand command = new(param => parameters.Add(param));
 
         // Act
         command.Execute("first");
@@ -385,7 +389,7 @@ public class ActionCommandTests
     public void CanExecuteChanged_ShouldNotBeNull()
     {
         // Arrange
-        var command = new ActionCommand(param => { });
+        ActionCommand command = new(param => { });
         EventHandler? handler = (sender, args) => { };
 
         // Act
@@ -399,7 +403,7 @@ public class ActionCommandTests
     public void CanExecuteChanged_Subscribe_ShouldNotThrow()
     {
         // Arrange
-        var command = new ActionCommand(param => { });
+        ActionCommand command = new(param => { });
 
         // Act
         Action act = () => command.CanExecuteChanged += (sender, args) => { };
@@ -412,7 +416,7 @@ public class ActionCommandTests
     public void CanExecuteChanged_Unsubscribe_ShouldNotThrow()
     {
         // Arrange
-        var command = new ActionCommand(param => { });
+        ActionCommand command = new(param => { });
         EventHandler handler = (sender, args) => { };
         command.CanExecuteChanged += handler;
 
@@ -432,7 +436,7 @@ public class ActionCommandTests
     {
         // This test simulates the exact scenario that caused the production crash
         // Arrange
-        var command = new ActionCommand(
+        ActionCommand command = new(
             param => { /* DataGrid action */ },
             param => param != null && param is string str && !string.IsNullOrEmpty(str)
         );
@@ -440,7 +444,7 @@ public class ActionCommandTests
         // Act & Assert - Should not throw exception
         Action act = () =>
         {
-            var canExecute = command.CanExecute(null); // DataGrid often passes null
+            bool canExecute = command.CanExecute(null); // DataGrid often passes null
             canExecute.Should().BeFalse();
         };
 
@@ -451,8 +455,8 @@ public class ActionCommandTests
     public void DataGrid_Scenario_MultipleNullChecks_ShouldWork()
     {
         // Arrange
-        var executionLog = new List<string>();
-        var command = new ActionCommand(
+        List<string> executionLog = new();
+        ActionCommand command = new(
             param =>
             {
                 if (param != null)
@@ -482,11 +486,11 @@ public class ActionCommandTests
     public void RealWorld_SaveCommand_WithValidation_ShouldWork()
     {
         // Arrange
-        var saveExecuted = false;
-        var command = new ActionCommand(
+        bool saveExecuted = false;
+        ActionCommand command = new(
             param =>
             {
-                var data = param as string;
+                string? data = param as string;
                 // Save logic
                 saveExecuted = true;
             },
@@ -513,8 +517,8 @@ public class ActionCommandTests
     public void RealWorld_DeleteCommand_WithEntityCheck_ShouldWork()
     {
         // Arrange
-        var deletedIds = new List<int>();
-        var command = new ActionCommand(
+        List<int> deletedIds = new();
+        ActionCommand command = new(
             param =>
             {
                 if (param is int id)
@@ -542,9 +546,9 @@ public class ActionCommandTests
     public async Task Execute_FromMultipleThreads_ShouldBeThreadSafe()
     {
         // Arrange
-        var counter = 0;
-        var lockObj = new object();
-        var command = new ActionCommand(param =>
+        int counter = 0;
+        object lockObj = new();
+        ActionCommand command = new(param =>
         {
             lock (lockObj)
             {
@@ -553,7 +557,7 @@ public class ActionCommandTests
         });
 
         // Act
-        var tasks = Enumerable.Range(0, 100)
+        Task[] tasks = Enumerable.Range(0, 100)
             .Select(_ => Task.Run(() => command.Execute(null)))
             .ToArray();
 
@@ -567,13 +571,13 @@ public class ActionCommandTests
     public async Task CanExecute_FromMultipleThreads_ShouldNotThrow()
     {
         // Arrange
-        var command = new ActionCommand(
+        ActionCommand command = new(
             param => { },
             param => param is int value && value > 0
         );
 
         // Act
-        var tasks = Enumerable.Range(0, 100)
+        Task<bool>[] tasks = Enumerable.Range(0, 100)
             .Select(i => Task.Run(() => command.CanExecute(i)))
             .ToArray();
 
@@ -590,12 +594,11 @@ public class ActionCommandTests
     public void CanExecute_CalledManyTimes_ShouldPerformWell()
     {
         // Arrange
-        var command = new ActionCommand(
+        ActionCommand command = new(
             param => { },
-            param => param is string str && str.Length > 5
-        );
+            param => param is string { Length: > 5 });
 
-        var stopwatch = System.Diagnostics.Stopwatch.StartNew();
+        Stopwatch stopwatch = Stopwatch.StartNew();
 
         // Act
         for (int i = 0; i < 10000; i++)

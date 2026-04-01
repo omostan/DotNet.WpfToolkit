@@ -7,6 +7,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [1.0.6] - 2026-04-01
+
+### Added
+- **Logging enrichers**: Added `WriteLine`, `WithPath`, and `WithMember` logger enrichment methods in `LogManager` for clearer caller context.
+- **Helpers**: Added `CompareCollections` utility with collection comparison and delta helpers.
+
+### Changed
+- **Test suite alignment**: Updated command, MVVM, logging, and database tests to match latest APIs and conventions.
+- **Packaging reliability**: Updated `nuget.config` with explicit package source mapping for deterministic restore behavior.
+
+### Deprecated
+- `LogManager.Me(...)` and `LogManager.WithLine(...)` are now marked obsolete in favor of `WriteLine(...)`.
+
+### Quality
+- Test status: **187 passed**, 0 failed.
+
+---
+
 ## [1.0.2] - 2025-11-24
 
 ### Added

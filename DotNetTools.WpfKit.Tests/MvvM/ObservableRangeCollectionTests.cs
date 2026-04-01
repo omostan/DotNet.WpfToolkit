@@ -25,6 +25,7 @@
 using DotNetTools.Wpfkit.MvvM;
 using System.Collections.Specialized;
 using System.ComponentModel;
+using System.Diagnostics;
 
 namespace DotNetTools.Wpfkit.Tests.MvvM;
 
@@ -39,7 +40,7 @@ public class ObservableRangeCollectionTests
     public void Constructor_Default_ShouldCreateEmptyCollection()
     {
         // Arrange & Act
-        var collection = new ObservableRangeCollection<int>();
+        ObservableRangeCollection<int> collection = [];
 
         // Assert
         collection.Should().BeEmpty();
@@ -50,10 +51,10 @@ public class ObservableRangeCollectionTests
     public void Constructor_WithEnumerable_ShouldPopulateCollection()
     {
         // Arrange
-        var items = new[] { 1, 2, 3, 4, 5 };
+        int[] items = [1, 2, 3, 4, 5];
 
         // Act
-        var collection = new ObservableRangeCollection<int>(items);
+        ObservableRangeCollection<int> collection = new ObservableRangeCollection<int>(items);
 
         // Assert
         collection.Should().HaveCount(5);
@@ -76,8 +77,8 @@ public class ObservableRangeCollectionTests
     public void AddRange_WithValidCollection_ShouldAddAllItems()
     {
         // Arrange
-        var collection = new ObservableRangeCollection<int> { 1, 2, 3 };
-        var newItems = new[] { 4, 5, 6 };
+        ObservableRangeCollection<int> collection = [1, 2, 3];
+        int[] newItems = [4, 5, 6];
 
         // Act
         collection.AddRange(newItems);
@@ -91,7 +92,7 @@ public class ObservableRangeCollectionTests
     public void AddRange_WithNullCollection_ShouldThrowArgumentNullException()
     {
         // Arrange
-        var collection = new ObservableRangeCollection<int>();
+        ObservableRangeCollection<int> collection = [];
 
         // Act & Assert
         Action act = () => collection.AddRange(null!);
@@ -102,8 +103,8 @@ public class ObservableRangeCollectionTests
     public void AddRange_WithEmptyCollection_ShouldNotModify()
     {
         // Arrange
-        var collection = new ObservableRangeCollection<int> { 1, 2, 3 };
-        var newItems = Array.Empty<int>();
+        ObservableRangeCollection<int> collection = [1, 2, 3];
+        int[] newItems = [];
 
         // Act
         collection.AddRange(newItems);
@@ -117,8 +118,8 @@ public class ObservableRangeCollectionTests
     public void AddRange_WithAddMode_ShouldRaiseCollectionChangedWithAdd()
     {
         // Arrange
-        var collection = new ObservableRangeCollection<int> { 1, 2, 3 };
-        var newItems = new[] { 4, 5 };
+        ObservableRangeCollection<int> collection = [1, 2, 3];
+        int[] newItems = [4, 5];
         NotifyCollectionChangedEventArgs? eventArgs = null;
 
         collection.CollectionChanged += (sender, args) => eventArgs = args;
@@ -138,8 +139,8 @@ public class ObservableRangeCollectionTests
     public void AddRange_WithResetMode_ShouldRaiseCollectionChangedWithReset()
     {
         // Arrange
-        var collection = new ObservableRangeCollection<int> { 1, 2, 3 };
-        var newItems = new[] { 4, 5 };
+        ObservableRangeCollection<int> collection = [1, 2, 3];
+        int[] newItems = [4, 5];
         NotifyCollectionChangedEventArgs? eventArgs = null;
 
         collection.CollectionChanged += (sender, args) => eventArgs = args;
@@ -156,8 +157,8 @@ public class ObservableRangeCollectionTests
     public void AddRange_WithInvalidMode_ShouldThrowArgumentException()
     {
         // Arrange
-        var collection = new ObservableRangeCollection<int>();
-        var newItems = new[] { 1, 2, 3 };
+        ObservableRangeCollection<int> collection = [];
+        int[] newItems = [1, 2, 3];
 
         // Act & Assert
         Action act = () => collection.AddRange(newItems, NotifyCollectionChangedAction.Remove);
@@ -168,9 +169,9 @@ public class ObservableRangeCollectionTests
     public void AddRange_ShouldRaisePropertyChangedForCount()
     {
         // Arrange
-        var collection = new ObservableRangeCollection<int> { 1, 2, 3 };
-        var newItems = new[] { 4, 5 };
-        var propertyChangedRaised = false;
+        ObservableRangeCollection<int> collection = [1, 2, 3];
+        int[] newItems = [4, 5];
+        bool propertyChangedRaised = false;
 
         ((INotifyPropertyChanged)collection).PropertyChanged += (sender, args) =>
         {
@@ -193,8 +194,8 @@ public class ObservableRangeCollectionTests
     public void RemoveRange_WithValidCollection_ShouldRemoveAllItems()
     {
         // Arrange
-        var collection = new ObservableRangeCollection<int> { 1, 2, 3, 4, 5 };
-        var itemsToRemove = new[] { 2, 4 };
+        ObservableRangeCollection<int> collection = [1, 2, 3, 4, 5];
+        int[] itemsToRemove = [2, 4];
 
         // Act
         collection.RemoveRange(itemsToRemove);
@@ -208,7 +209,7 @@ public class ObservableRangeCollectionTests
     public void RemoveRange_WithNullCollection_ShouldThrowArgumentNullException()
     {
         // Arrange
-        var collection = new ObservableRangeCollection<int> { 1, 2, 3 };
+        ObservableRangeCollection<int> collection = [1, 2, 3];
 
         // Act & Assert
         Action act = () => collection.RemoveRange(null!);
@@ -219,8 +220,8 @@ public class ObservableRangeCollectionTests
     public void RemoveRange_WithNonExistentItems_ShouldNotModify()
     {
         // Arrange
-        var collection = new ObservableRangeCollection<int> { 1, 2, 3 };
-        var itemsToRemove = new[] { 4, 5 };
+        ObservableRangeCollection<int> collection = [1, 2, 3];
+        int[] itemsToRemove = [4, 5];
 
         // Act
         collection.RemoveRange(itemsToRemove);
@@ -234,8 +235,8 @@ public class ObservableRangeCollectionTests
     public void RemoveRange_WithResetMode_ShouldRaiseCollectionChangedWithReset()
     {
         // Arrange
-        var collection = new ObservableRangeCollection<int> { 1, 2, 3, 4, 5 };
-        var itemsToRemove = new[] { 2, 4 };
+        ObservableRangeCollection<int> collection = [1, 2, 3, 4, 5];
+        int[] itemsToRemove = [2, 4];
         NotifyCollectionChangedEventArgs? eventArgs = null;
 
         collection.CollectionChanged += (sender, args) => eventArgs = args;
@@ -252,8 +253,8 @@ public class ObservableRangeCollectionTests
     public void RemoveRange_WithRemoveMode_ShouldRaiseCollectionChangedWithRemove()
     {
         // Arrange
-        var collection = new ObservableRangeCollection<int> { 1, 2, 3, 4, 5 };
-        var itemsToRemove = new[] { 2, 4 };
+        ObservableRangeCollection<int> collection = [1, 2, 3, 4, 5];
+        int[] itemsToRemove = [2, 4];
         NotifyCollectionChangedEventArgs? eventArgs = null;
 
         collection.CollectionChanged += (sender, args) => eventArgs = args;
@@ -271,8 +272,8 @@ public class ObservableRangeCollectionTests
     public void RemoveRange_WithInvalidMode_ShouldThrowArgumentException()
     {
         // Arrange
-        var collection = new ObservableRangeCollection<int> { 1, 2, 3 };
-        var itemsToRemove = new[] { 1, 2 };
+        ObservableRangeCollection<int> collection = [1, 2, 3];
+        int[] itemsToRemove = [1, 2];
 
         // Act & Assert
         Action act = () => collection.RemoveRange(itemsToRemove, NotifyCollectionChangedAction.Add);
@@ -283,9 +284,9 @@ public class ObservableRangeCollectionTests
     public void RemoveRange_ShouldRaisePropertyChangedForCount()
     {
         // Arrange
-        var collection = new ObservableRangeCollection<int> { 1, 2, 3, 4, 5 };
-        var itemsToRemove = new[] { 2, 4 };
-        var propertyChangedRaised = false;
+        ObservableRangeCollection<int> collection = [1, 2, 3, 4, 5];
+        int[] itemsToRemove = [2, 4];
+        bool propertyChangedRaised = false;
 
         ((INotifyPropertyChanged)collection).PropertyChanged += (sender, args) =>
         {
@@ -308,7 +309,7 @@ public class ObservableRangeCollectionTests
     public void Replace_WithSingleItem_ShouldClearAndAddItem()
     {
         // Arrange
-        var collection = new ObservableRangeCollection<int> { 1, 2, 3 };
+        ObservableRangeCollection<int> collection = [1, 2, 3];
 
         // Act
         collection.Replace(99);
@@ -322,7 +323,7 @@ public class ObservableRangeCollectionTests
     public void Replace_ShouldRaiseCollectionChangedWithReset()
     {
         // Arrange
-        var collection = new ObservableRangeCollection<int> { 1, 2, 3 };
+        ObservableRangeCollection<int> collection = [1, 2, 3];
         NotifyCollectionChangedEventArgs? eventArgs = null;
 
         collection.CollectionChanged += (sender, args) => eventArgs = args;
@@ -343,8 +344,8 @@ public class ObservableRangeCollectionTests
     public void ReplaceRange_WithValidCollection_ShouldReplaceAllItems()
     {
         // Arrange
-        var collection = new ObservableRangeCollection<int> { 1, 2, 3 };
-        var newItems = new[] { 7, 8, 9 };
+        ObservableRangeCollection<int> collection = [1, 2, 3];
+        int[] newItems = [7, 8, 9];
 
         // Act
         collection.ReplaceRange(newItems);
@@ -358,7 +359,7 @@ public class ObservableRangeCollectionTests
     public void ReplaceRange_WithNullCollection_ShouldThrowArgumentNullException()
     {
         // Arrange
-        var collection = new ObservableRangeCollection<int> { 1, 2, 3 };
+        ObservableRangeCollection<int> collection = [1, 2, 3];
 
         // Act & Assert
         Action act = () => collection.ReplaceRange(null!);
@@ -369,8 +370,8 @@ public class ObservableRangeCollectionTests
     public void ReplaceRange_WithEmptyCollection_ShouldClearOriginal()
     {
         // Arrange
-        var collection = new ObservableRangeCollection<int> { 1, 2, 3 };
-        var newItems = Array.Empty<int>();
+        ObservableRangeCollection<int> collection = [1, 2, 3];
+        int[] newItems = [];
 
         // Act
         collection.ReplaceRange(newItems);
@@ -383,8 +384,8 @@ public class ObservableRangeCollectionTests
     public void ReplaceRange_ShouldRaiseCollectionChangedWithReset()
     {
         // Arrange
-        var collection = new ObservableRangeCollection<int> { 1, 2, 3 };
-        var newItems = new[] { 7, 8, 9 };
+        ObservableRangeCollection<int> collection = [1, 2, 3];
+        int[] newItems = [7, 8, 9];
         NotifyCollectionChangedEventArgs? eventArgs = null;
 
         collection.CollectionChanged += (sender, args) => eventArgs = args;
@@ -401,9 +402,9 @@ public class ObservableRangeCollectionTests
     public void ReplaceRange_WhenBothEmpty_ShouldNotRaiseEvent()
     {
         // Arrange
-        var collection = new ObservableRangeCollection<int>();
-        var newItems = Array.Empty<int>();
-        var eventRaised = false;
+        ObservableRangeCollection<int> collection = [];
+        int[] newItems = [];
+        bool eventRaised = false;
 
         collection.CollectionChanged += (sender, args) => eventRaised = true;
 
@@ -418,9 +419,9 @@ public class ObservableRangeCollectionTests
     public void ReplaceRange_ShouldRaisePropertyChangedForCount()
     {
         // Arrange
-        var collection = new ObservableRangeCollection<int> { 1, 2, 3 };
-        var newItems = new[] { 7, 8 };
-        var propertyChangedRaised = false;
+        ObservableRangeCollection<int> collection = [1, 2, 3];
+        int[] newItems = [7, 8];
+        bool propertyChangedRaised = false;
 
         ((INotifyPropertyChanged)collection).PropertyChanged += (sender, args) =>
         {
@@ -443,11 +444,11 @@ public class ObservableRangeCollectionTests
     public void AddRange_WithLargeCollection_ShouldCompleteInReasonableTime()
     {
         // Arrange
-        var items = Enumerable.Range(1, 1000).ToArray();
-        var collection = new ObservableRangeCollection<int>();
+        int[] items = Enumerable.Range(1, 1000).ToArray();
+        ObservableRangeCollection<int> collection = [];
 
         // Act
-        var sw = System.Diagnostics.Stopwatch.StartNew();
+        Stopwatch sw = System.Diagnostics.Stopwatch.StartNew();
         collection.AddRange(items);
         sw.Stop();
 
@@ -462,22 +463,22 @@ public class ObservableRangeCollectionTests
     public void AddRange_ShouldRaiseFewerEventsThanMultipleAdds()
     {
         // Arrange
-        var items = Enumerable.Range(1, 100).ToArray();
-        
+        int[] items = Enumerable.Range(1, 100).ToArray();
+
         // Test AddRange - should raise 1 or 2 events (PropertyChanged + CollectionChanged)
-        var collection1 = new ObservableRangeCollection<int>();
-        var addRangeEventCount = 0;
+        ObservableRangeCollection<int> collection1 = [];
+        int addRangeEventCount = 0;
         collection1.CollectionChanged += (s, e) => addRangeEventCount++;
-        
+
         // Test Multiple Adds - should raise 100 events (1 per Add)
-        var collection2 = new ObservableRangeCollection<int>();
-        var multipleAddsEventCount = 0;
+        ObservableRangeCollection<int> collection2 = [];
+        int multipleAddsEventCount = 0;
         collection2.CollectionChanged += (s, e) => multipleAddsEventCount++;
 
         // Act
         collection1.AddRange(items, NotifyCollectionChangedAction.Add);
-        
-        foreach (var item in items)
+
+        foreach (int item in items)
             collection2.Add(item);
 
         // Assert
@@ -496,14 +497,14 @@ public class ObservableRangeCollectionTests
     public void ObservableRangeCollection_ComplexScenario_ShouldWorkCorrectly()
     {
         // Arrange
-        var collection = new ObservableRangeCollection<string> { "A", "B", "C" };
+        ObservableRangeCollection<string> collection = ["A", "B", "C"];
 
         // Act & Assert - AddRange
-        collection.AddRange(new[] { "D", "E" });
+        collection.AddRange(["D", "E"]);
         collection.Should().Equal("A", "B", "C", "D", "E");
 
         // Act & Assert - RemoveRange
-        collection.RemoveRange(new[] { "B", "D" });
+        collection.RemoveRange(["B", "D"]);
         collection.Should().Equal("A", "C", "E");
 
         // Act & Assert - Replace
@@ -511,7 +512,7 @@ public class ObservableRangeCollectionTests
         collection.Should().Equal("X");
 
         // Act & Assert - ReplaceRange
-        collection.ReplaceRange(new[] { "P", "Q", "R" });
+        collection.ReplaceRange(["P", "Q", "R"]);
         collection.Should().Equal("P", "Q", "R");
     }
 
@@ -523,10 +524,10 @@ public class ObservableRangeCollectionTests
         var person2 = new { Name = "Jane", Age = 25 };
         var person3 = new { Name = "Bob", Age = 35 };
 
-        var collection = new ObservableRangeCollection<object> { person1 };
+        ObservableRangeCollection<object> collection = [person1];
 
         // Act
-        collection.AddRange(new object[] { person2, person3 });
+        collection.AddRange([person2, person3]);
 
         // Assert
         collection.Should().HaveCount(3);
@@ -543,8 +544,8 @@ public class ObservableRangeCollectionTests
     public void AddRange_ToEmptyCollection_ShouldWork()
     {
         // Arrange
-        var collection = new ObservableRangeCollection<int>();
-        var items = new[] { 1, 2, 3 };
+        ObservableRangeCollection<int> collection = [];
+        int[] items = [1, 2, 3];
 
         // Act
         collection.AddRange(items);
@@ -557,8 +558,8 @@ public class ObservableRangeCollectionTests
     public void RemoveRange_FromEmptyCollection_ShouldNotThrow()
     {
         // Arrange
-        var collection = new ObservableRangeCollection<int>();
-        var items = new[] { 1, 2, 3 };
+        ObservableRangeCollection<int> collection = [];
+        int[] items = [1, 2, 3];
 
         // Act
         Action act = () => collection.RemoveRange(items);
@@ -572,13 +573,13 @@ public class ObservableRangeCollectionTests
     public void ReplaceRange_EmptyWithEmpty_ShouldNotRaiseEvents()
     {
         // Arrange
-        var collection = new ObservableRangeCollection<int>();
-        var eventRaised = false;
+        ObservableRangeCollection<int> collection = [];
+        bool eventRaised = false;
 
         collection.CollectionChanged += (sender, args) => eventRaised = true;
 
         // Act
-        collection.ReplaceRange(Array.Empty<int>());
+        collection.ReplaceRange([]);
 
         // Assert
         eventRaised.Should().BeFalse();
@@ -592,24 +593,24 @@ public class ObservableRangeCollectionTests
     public async Task ObservableRangeCollection_WithConcurrentOperations_ShouldHandleGracefully()
     {
         // Arrange
-        var collection = new ObservableRangeCollection<int>();
-        var exceptions = new List<Exception>();
+        ObservableRangeCollection<int> collection = [];
+        List<Exception>? exceptions = [];
         if (exceptions == null)
         {
             throw new ArgumentNullException(nameof(exceptions));
         }
 
-        var tasks = new List<Task>();
+        List<Task> tasks = [];
 
         // Act
         for (int i = 0; i < 5; i++)
         {
-            var index = i;
+            int index = i;
             tasks.Add(Task.Run(() =>
             {
                 try
                 {
-                    var items = Enumerable.Range(index * 100, 10).ToArray();
+                    int[] items = Enumerable.Range(index * 100, 10).ToArray();
                     collection.AddRange(items);
                 }
                 catch (Exception ex)

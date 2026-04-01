@@ -23,6 +23,7 @@
 #endregion copyright
 
 using DotNetTools.Wpfkit.Commands;
+using System.Diagnostics;
 using System.Windows.Input;
 
 namespace DotNetTools.Wpfkit.Tests.Commands;
@@ -39,7 +40,7 @@ public class RelayCommandTests
     public void Constructor_WithValidAction_ShouldCreateCommand()
     {
         // Arrange & Act
-        var command = new RelayCommand(param => { });
+        RelayCommand command = new(param => { });
 
         // Assert
         command.Should().NotBeNull();
@@ -61,7 +62,7 @@ public class RelayCommandTests
     public void Constructor_WithActionAndPredicate_ShouldCreateCommand()
     {
         // Arrange & Act
-        var command = new RelayCommand(
+        RelayCommand command = new(
             param => { },
             param => true
         );
@@ -78,7 +79,7 @@ public class RelayCommandTests
     public void RelayCommand_ShouldInheritFromActionCommand()
     {
         // Arrange & Act
-        var command = new RelayCommand(param => { });
+        RelayCommand command = new(param => { });
 
         // Assert
         command.Should().BeAssignableTo<ActionCommand>();
@@ -88,7 +89,7 @@ public class RelayCommandTests
     public void RelayCommand_ShouldImplementICommand()
     {
         // Arrange & Act
-        var command = new RelayCommand(param => { });
+        RelayCommand command = new(param => { });
 
         // Assert
         command.Should().BeAssignableTo<ICommand>();
@@ -102,10 +103,10 @@ public class RelayCommandTests
     public void CanExecute_WithNoPredicate_ShouldReturnTrue()
     {
         // Arrange
-        var command = new RelayCommand(param => { });
+        RelayCommand command = new(param => { });
 
         // Act
-        var result = command.CanExecute(null);
+        bool result = command.CanExecute(null);
 
         // Assert
         result.Should().BeTrue();
@@ -115,13 +116,13 @@ public class RelayCommandTests
     public void CanExecute_WithNullParameter_AndPredicate_ShouldHandleGracefully()
     {
         // Arrange
-        var command = new RelayCommand(
+        RelayCommand command = new(
             param => { },
             param => param != null
         );
 
         // Act
-        var result = command.CanExecute(null);
+        bool result = command.CanExecute(null);
 
         // Assert
         result.Should().BeFalse();
@@ -131,13 +132,13 @@ public class RelayCommandTests
     public void CanExecute_WithValidParameter_AndPredicate_ShouldReturnTrue()
     {
         // Arrange
-        var command = new RelayCommand(
+        RelayCommand command = new(
             param => { },
             param => param is string
         );
 
         // Act
-        var result = command.CanExecute("test");
+        bool result = command.CanExecute("test");
 
         // Assert
         result.Should().BeTrue();
@@ -147,13 +148,13 @@ public class RelayCommandTests
     public void CanExecute_WhenPredicateThrows_ShouldReturnFalse()
     {
         // Arrange
-        var command = new RelayCommand(
+        RelayCommand command = new(
             param => { },
             param => throw new InvalidOperationException()
         );
 
         // Act
-        var result = command.CanExecute(null);
+        bool result = command.CanExecute(null);
 
         // Assert
         result.Should().BeFalse();
@@ -167,8 +168,8 @@ public class RelayCommandTests
     public void Execute_ShouldInvokeAction()
     {
         // Arrange
-        var executed = false;
-        var command = new RelayCommand(param => executed = true);
+        bool executed = false;
+        RelayCommand command = new(param => executed = true);
 
         // Act
         command.Execute(null);
@@ -182,7 +183,7 @@ public class RelayCommandTests
     {
         // Arrange
         object? capturedParam = null;
-        var command = new RelayCommand(param => capturedParam = param);
+        RelayCommand command = new(param => capturedParam = param);
 
         // Act
         command.Execute("test");
@@ -195,8 +196,8 @@ public class RelayCommandTests
     public void Execute_MultipleTimes_ShouldWorkCorrectly()
     {
         // Arrange
-        var count = 0;
-        var command = new RelayCommand(param => count++);
+        int count = 0;
+        RelayCommand command = new(param => count++);
 
         // Act
         command.Execute(null);
@@ -215,8 +216,8 @@ public class RelayCommandTests
     public void MVVM_Scenario_ButtonCommand_ShouldWork()
     {
         // Arrange
-        var clicked = false;
-        var command = new RelayCommand(
+        bool clicked = false;
+        RelayCommand command = new(
             param => clicked = true,
             param => !clicked // Can only click once
         );
@@ -233,7 +234,7 @@ public class RelayCommandTests
     {
         // Arrange
         string? searchTerm = null;
-        var command = new RelayCommand(
+        RelayCommand command = new(
             param => searchTerm = param as string,
             param => param is string str && !string.IsNullOrWhiteSpace(str)
         );
@@ -253,9 +254,9 @@ public class RelayCommandTests
     {
         // Arrange
         object? selectedItem = null;
-        var deletedItems = new List<object>();
+        List<object> deletedItems = new();
 
-        var command = new RelayCommand(
+        RelayCommand command = new(
             param =>
             {
                 if (param != null)
@@ -279,7 +280,7 @@ public class RelayCommandTests
     {
         // Arrange
         string? currentView = "Home";
-        var command = new RelayCommand(
+        RelayCommand command = new(
             param =>
             {
                 if (param is string view)
@@ -308,7 +309,7 @@ public class RelayCommandTests
     {
         // Simulates DataGrid passing null during initialization
         // Arrange
-        var command = new RelayCommand(
+        RelayCommand command = new(
             param => { /* Edit row */ },
             param => param != null
         );
@@ -316,7 +317,7 @@ public class RelayCommandTests
         // Act & Assert
         Action act = () =>
         {
-            var canExecute = command.CanExecute(null);
+            bool canExecute = command.CanExecute(null);
             canExecute.Should().BeFalse();
         };
 
@@ -327,8 +328,8 @@ public class RelayCommandTests
     public void DataGrid_RowCommand_WithValidRow_ShouldExecute()
     {
         // Arrange
-        var editedRow = "";
-        var command = new RelayCommand(
+        string editedRow = "";
+        RelayCommand command = new(
             param => editedRow = param?.ToString() ?? "",
             param => param != null
         );
@@ -348,7 +349,7 @@ public class RelayCommandTests
     public void ComplexPredicate_WithMultipleConditions_ShouldEvaluateCorrectly()
     {
         // Arrange
-        var command = new RelayCommand(
+        RelayCommand command = new(
             param => { },
             param =>
             {
@@ -372,11 +373,11 @@ public class RelayCommandTests
     public void ComplexPredicate_WithExceptionHandling_ShouldReturnFalse()
     {
         // Arrange
-        var command = new RelayCommand(
+        RelayCommand command = new(
             param => { },
             param =>
             {
-                var str = (string)param!; // Will throw on null or non-string
+                string str = (string)param!; // Will throw on null or non-string
                 return str.Length > 0;
             }
         );
@@ -395,10 +396,10 @@ public class RelayCommandTests
     public void RelayCommand_MultipleExecutions_ShouldPerformWell()
     {
         // Arrange
-        var counter = 0;
-        var command = new RelayCommand(param => counter++);
+        int counter = 0;
+        RelayCommand command = new(param => counter++);
 
-        var stopwatch = System.Diagnostics.Stopwatch.StartNew();
+        Stopwatch stopwatch = System.Diagnostics.Stopwatch.StartNew();
 
         // Act
         for (int i = 0; i < 10000; i++)
@@ -421,7 +422,7 @@ public class RelayCommandTests
     public void CanExecuteChanged_AddRemoveHandler_ShouldNotThrow()
     {
         // Arrange
-        var command = new RelayCommand(param => { });
+        RelayCommand command = new(param => { });
         EventHandler handler = (s, e) => { };
 
         // Act & Assert
@@ -440,15 +441,15 @@ public class RelayCommandTests
     public void RelayCommand_ShouldBehaveIdenticallyToActionCommand()
     {
         // Arrange
-        var actionCommandExecuted = false;
-        var relayCommandExecuted = false;
+        bool actionCommandExecuted = false;
+        bool relayCommandExecuted = false;
 
-        var actionCommand = new ActionCommand(
+        ActionCommand actionCommand = new(
             param => actionCommandExecuted = true,
             param => param is int value && value > 0
         );
 
-        var relayCommand = new RelayCommand(
+        RelayCommand relayCommand = new(
             param => relayCommandExecuted = true,
             param => param is int value && value > 0
         );

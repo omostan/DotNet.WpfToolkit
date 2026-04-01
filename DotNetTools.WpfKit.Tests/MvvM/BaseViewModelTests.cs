@@ -60,7 +60,7 @@ public class BaseViewModelTests
     public void Title_DefaultValue_ShouldBeEmpty()
     {
         // Arrange & Act
-        var viewModel = new BaseViewModel();
+        BaseViewModel viewModel = new();
 
         // Assert
         viewModel.Title.Should().Be(string.Empty);
@@ -70,7 +70,7 @@ public class BaseViewModelTests
     public void Title_WhenSet_ShouldUpdateValue()
     {
         // Arrange
-        var viewModel = new BaseViewModel();
+        BaseViewModel viewModel = new();
 
         // Act
         viewModel.Title = "Test Title";
@@ -83,8 +83,8 @@ public class BaseViewModelTests
     public void Title_WhenSet_ShouldRaisePropertyChanged()
     {
         // Arrange
-        var viewModel = new BaseViewModel();
-        var eventRaised = false;
+        BaseViewModel viewModel = new();
+        bool eventRaised = false;
 
         viewModel.PropertyChanged += (sender, args) =>
         {
@@ -107,7 +107,7 @@ public class BaseViewModelTests
     public void Subtitle_DefaultValue_ShouldBeEmpty()
     {
         // Arrange & Act
-        var viewModel = new BaseViewModel();
+        BaseViewModel viewModel = new();
 
         // Assert
         viewModel.Subtitle.Should().Be(string.Empty);
@@ -117,7 +117,7 @@ public class BaseViewModelTests
     public void Subtitle_WhenSet_ShouldUpdateValue()
     {
         // Arrange
-        var viewModel = new BaseViewModel();
+        BaseViewModel viewModel = new();
 
         // Act
         viewModel.Subtitle = "Test Subtitle";
@@ -130,8 +130,8 @@ public class BaseViewModelTests
     public void Subtitle_WhenSet_ShouldRaisePropertyChanged()
     {
         // Arrange
-        var viewModel = new BaseViewModel();
-        var eventRaised = false;
+        BaseViewModel viewModel = new();
+        bool eventRaised = false;
 
         viewModel.PropertyChanged += (sender, args) =>
         {
@@ -154,7 +154,7 @@ public class BaseViewModelTests
     public void Icon_DefaultValue_ShouldBeEmpty()
     {
         // Arrange & Act
-        var viewModel = new BaseViewModel();
+        BaseViewModel viewModel = new();
 
         // Assert
         viewModel.Icon.Should().Be(string.Empty);
@@ -164,7 +164,7 @@ public class BaseViewModelTests
     public void Icon_WhenSet_ShouldUpdateValue()
     {
         // Arrange
-        var viewModel = new BaseViewModel();
+        BaseViewModel viewModel = new();
 
         // Act
         viewModel.Icon = "icon.png";
@@ -177,8 +177,8 @@ public class BaseViewModelTests
     public void Icon_WhenSet_ShouldRaisePropertyChanged()
     {
         // Arrange
-        var viewModel = new BaseViewModel();
-        var eventRaised = false;
+        BaseViewModel viewModel = new();
+        bool eventRaised = false;
 
         viewModel.PropertyChanged += (sender, args) =>
         {
@@ -201,7 +201,7 @@ public class BaseViewModelTests
     public void IsBusy_DefaultValue_ShouldBeFalse()
     {
         // Arrange & Act
-        var viewModel = new BaseViewModel();
+        BaseViewModel viewModel = new();
 
         // Assert
         viewModel.IsBusy.Should().BeFalse();
@@ -211,7 +211,7 @@ public class BaseViewModelTests
     public void IsBusy_WhenSetToTrue_ShouldUpdateValue()
     {
         // Arrange
-        var viewModel = new BaseViewModel();
+        BaseViewModel viewModel = new();
 
         // Act
         viewModel.IsBusy = true;
@@ -224,7 +224,7 @@ public class BaseViewModelTests
     public void IsBusy_WhenSetToTrue_ShouldSetIsNotBusyToFalse()
     {
         // Arrange
-        var viewModel = new BaseViewModel();
+        BaseViewModel viewModel = new();
 
         // Act
         viewModel.IsBusy = true;
@@ -238,9 +238,9 @@ public class BaseViewModelTests
     public void IsBusy_WhenSet_ShouldRaisePropertyChangedForBothProperties()
     {
         // Arrange
-        var viewModel = new BaseViewModel();
-        var isBusyRaised = false;
-        var isNotBusyRaised = false;
+        BaseViewModel viewModel = new();
+        bool isBusyRaised = false;
+        bool isNotBusyRaised = false;
 
         viewModel.PropertyChanged += (sender, args) =>
         {
@@ -266,7 +266,7 @@ public class BaseViewModelTests
     public void IsNotBusy_DefaultValue_ShouldBeTrue()
     {
         // Arrange & Act
-        var viewModel = new BaseViewModel();
+        BaseViewModel viewModel = new();
 
         // Assert
         viewModel.IsNotBusy.Should().BeTrue();
@@ -276,7 +276,7 @@ public class BaseViewModelTests
     public void IsNotBusy_WhenSetToFalse_ShouldSetIsBusyToTrue()
     {
         // Arrange
-        var viewModel = new BaseViewModel();
+        BaseViewModel viewModel = new();
 
         // Act
         viewModel.IsNotBusy = false;
@@ -290,9 +290,9 @@ public class BaseViewModelTests
     public void IsNotBusy_WhenSet_ShouldRaisePropertyChangedForBothProperties()
     {
         // Arrange
-        var viewModel = new BaseViewModel();
-        var isBusyRaised = false;
-        var isNotBusyRaised = false;
+        BaseViewModel viewModel = new();
+        bool isBusyRaised = false;
+        bool isNotBusyRaised = false;
 
         viewModel.PropertyChanged += (sender, args) =>
         {
@@ -314,7 +314,7 @@ public class BaseViewModelTests
     public void IsBusy_And_IsNotBusy_ShouldBeInverse()
     {
         // Arrange
-        var viewModel = new BaseViewModel();
+        BaseViewModel viewModel = new();
 
         // Act & Assert - Initial state
         viewModel.IsBusy.Should().BeFalse();
@@ -339,7 +339,7 @@ public class BaseViewModelTests
     public void CanLoadMore_DefaultValue_ShouldBeTrue()
     {
         // Arrange & Act
-        var viewModel = new BaseViewModel();
+        BaseViewModel viewModel = new();
 
         // Assert
         viewModel.CanLoadMore.Should().BeTrue();
@@ -349,7 +349,7 @@ public class BaseViewModelTests
     public void CanLoadMore_WhenSet_ShouldUpdateValue()
     {
         // Arrange
-        var viewModel = new BaseViewModel();
+        BaseViewModel viewModel = new();
 
         // Act
         viewModel.CanLoadMore = false;
@@ -362,8 +362,8 @@ public class BaseViewModelTests
     public void CanLoadMore_WhenSet_ShouldRaisePropertyChanged()
     {
         // Arrange
-        var viewModel = new BaseViewModel();
-        var eventRaised = false;
+        BaseViewModel viewModel = new();
+        bool eventRaised = false;
 
         viewModel.PropertyChanged += (sender, args) =>
         {
@@ -386,7 +386,7 @@ public class BaseViewModelTests
     public void Header_DefaultValue_ShouldBeEmpty()
     {
         // Arrange & Act
-        var viewModel = new BaseViewModel();
+        BaseViewModel viewModel = new();
 
         // Assert
         viewModel.Header.Should().Be(string.Empty);
@@ -396,7 +396,7 @@ public class BaseViewModelTests
     public void Header_WhenSet_ShouldUpdateValue()
     {
         // Arrange
-        var viewModel = new BaseViewModel();
+        BaseViewModel viewModel = new();
 
         // Act
         viewModel.Header = "Test Header";
@@ -409,8 +409,8 @@ public class BaseViewModelTests
     public void Header_WhenSet_ShouldRaisePropertyChanged()
     {
         // Arrange
-        var viewModel = new BaseViewModel();
-        var eventRaised = false;
+        BaseViewModel viewModel = new();
+        bool eventRaised = false;
 
         viewModel.PropertyChanged += (sender, args) =>
         {
@@ -433,7 +433,7 @@ public class BaseViewModelTests
     public void Footer_DefaultValue_ShouldBeEmpty()
     {
         // Arrange & Act
-        var viewModel = new BaseViewModel();
+        BaseViewModel viewModel = new();
 
         // Assert
         viewModel.Footer.Should().Be(string.Empty);
@@ -443,7 +443,7 @@ public class BaseViewModelTests
     public void Footer_WhenSet_ShouldUpdateValue()
     {
         // Arrange
-        var viewModel = new BaseViewModel();
+        BaseViewModel viewModel = new();
 
         // Act
         viewModel.Footer = "Test Footer";
@@ -456,8 +456,8 @@ public class BaseViewModelTests
     public void Footer_WhenSet_ShouldRaisePropertyChanged()
     {
         // Arrange
-        var viewModel = new BaseViewModel();
-        var eventRaised = false;
+        BaseViewModel viewModel = new();
+        bool eventRaised = false;
 
         viewModel.PropertyChanged += (sender, args) =>
         {
@@ -480,7 +480,7 @@ public class BaseViewModelTests
     public void BaseViewModel_ShouldInheritFromObservableObject()
     {
         // Arrange & Act
-        var viewModel = new BaseViewModel();
+        BaseViewModel viewModel = new();
 
         // Assert
         viewModel.Should().BeAssignableTo<ObservableObject>();
@@ -490,11 +490,11 @@ public class BaseViewModelTests
     public async Task BaseViewModel_AsyncLoadingScenario_ShouldWorkCorrectly()
     {
         // Arrange
-        var viewModel = new TestViewModel();
+        TestViewModel viewModel = new();
 
         // Act
-        var loadTask = viewModel.LoadDataAsync();
-        
+        Task loadTask = viewModel.LoadDataAsync();
+
         // Assert - During loading
         await Task.Delay(5); // Give it a moment to start
         // Note: IsBusy state might already be false if task completes quickly
@@ -511,7 +511,7 @@ public class BaseViewModelTests
     public void BaseViewModel_MultiplePropertiesSet_ShouldAllUpdate()
     {
         // Arrange
-        var viewModel = new BaseViewModel();
+        BaseViewModel viewModel = new();
 
         // Act
         viewModel.Title = "My App";
@@ -537,8 +537,8 @@ public class BaseViewModelTests
     public void BaseViewModel_AllProperties_ShouldRaisePropertyChanged()
     {
         // Arrange
-        var viewModel = new BaseViewModel();
-        var changedProperties = new List<string?>();
+        BaseViewModel viewModel = new();
+        List<string?> changedProperties = new();
 
         viewModel.PropertyChanged += (sender, args) => changedProperties.Add(args.PropertyName);
 
@@ -570,8 +570,8 @@ public class BaseViewModelTests
     public void BaseViewModel_SetSameValue_ShouldNotRaisePropertyChanged()
     {
         // Arrange
-        var viewModel = new BaseViewModel { Title = "Test" };
-        var eventRaised = false;
+        BaseViewModel viewModel = new() { Title = "Test" };
+        bool eventRaised = false;
 
         viewModel.PropertyChanged += (sender, args) => eventRaised = true;
 
@@ -586,7 +586,7 @@ public class BaseViewModelTests
     public void BaseViewModel_SetNullValues_ShouldHandleGracefully()
     {
         // Arrange
-        var viewModel = new BaseViewModel();
+        BaseViewModel viewModel = new();
 
         // Act
         viewModel.Title = null!;
